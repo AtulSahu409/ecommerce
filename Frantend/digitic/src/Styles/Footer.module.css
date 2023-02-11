@@ -1,0 +1,25 @@
+.container{
+    margin-top: 4%;
+    background-color: rgb(59, 46, 46);
+    padding: 10px;
+    color: white;
+    
+}
+
+.topfooter{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    margin: 0 40px;
+}
+.icon{
+    display:flex;
+
+}
+.middlefooter{
+    margin: 0 10%;
+}
+.bottomfooter{
+    display: flex;
+    justify-content: center;
+}
