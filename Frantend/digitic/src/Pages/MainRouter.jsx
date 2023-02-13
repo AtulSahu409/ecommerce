@@ -1,12 +1,14 @@
+import { Box } from '@chakra-ui/react'
 import React from 'react'
 import {Routes,Route} from "react-router-dom"
+import Home from './Home'
 const MainRouter = () => {
   return (
-    
+    <Box mt="5%" >
         <Routes>
-            <Route></Route>
+            <Route path="/" element={<Home/>}/>
         </Routes>
-    
+    </Box>
   )
 }
 

@@ -1,12 +1,12 @@
-import { Box, Divider, Input, InputGroup, InputLeftElement, InputRightElement, Link, Select, Stack, Text } from '@chakra-ui/react'
+import { Box, Divider, Image, Input, InputGroup, InputLeftElement, InputRightElement, Link, Select, Stack, Text } from '@chakra-ui/react'
 
 import {Search2Icon} from "@chakra-ui/icons"
-import {IoMdGitCompare} from "react-icons/io"
-import {AiOutlineHeart} from "react-icons/ai"
-import {BsCart} from "react-icons/bs"
-import {CiUser} from "react-icons/ci"
-import {CgMenuGridO} from "react-icons/cg"
 
+import {CgMenuGridO} from "react-icons/cg"
+import compare from "../../Images/compare.svg"
+import cart  from "../../Images/cart.svg"
+import user  from "../../Images/user.svg"
+import wishlist from "../../Images/wishlist.svg"
 import React from 'react'
 import styled from "../../Styles/Navbar.module.css"
 const Navbar = () => {
@@ -27,19 +27,20 @@ const Navbar = () => {
             </InputGroup>
            <div className={styled.topnavright}>
             <div className={styled.item}>
-             <div className={styled.icon}><IoMdGitCompare fontSize={"30px"} p="10px" /></div>
+            <Image src={compare} alt="compare"/>
+            
              <Link><p>Compare <br/>Product</p></Link>
             </div>
             <div className={styled.item}>
-             <div className={styled.icon}> <AiOutlineHeart fontSize={"30px"} p="10px" /></div>
+            <Image src={wishlist} alt="compare"/>
             <Link><p>Favouite<br/> Wishlist</p></Link>
             </div>
             <div className={styled.item}>
-             <div className={styled.icon}><CiUser fontSize={"30px"} p="10px" /></div>
+            <Image src={user} alt="compare"/>
              <Link><p>Log in <br/> My Account</p></Link>
             </div>
             <div className={styled.item}>
-             <Link><div className={styled.icon}><BsCart fontSize={"30px"} p="10px" /></div></Link>
+             <Link><Image src={cart} alt="compare"/></Link>
              <p>cart</p>
             </div>
             
