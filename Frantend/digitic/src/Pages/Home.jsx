@@ -9,7 +9,8 @@ import catbanner4 from "../Images/catbanner-04.jpg"
 
 import SwipeToSlide from "../Components/Slider"
 import ResponsiveSlider from  "../Components/Slider2"
-import MultiplyRow from "../Components/MultipleRow"
+import  MultiplyRows  from "../Components/MultipleRow"
+import BrandSlider from "../Components/BrandSlider"
 const Home = () => {
   return (
   <div className={styled.home_container}>
@@ -71,7 +72,8 @@ const Home = () => {
   
   </div>
   <div className={styled.home_wrapper3}>
-    <MultiplyRow/>
+    <MultiplyRows/>
+     
   </div>
   
 

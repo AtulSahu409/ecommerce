@@ -162,11 +162,11 @@
     margin: 11px 0 12px;
 }
 .catbanner_desc {
-    font-size: 20px;
+    font-size: 15px;
     line-height: 22px;
     letter-spacing: .2px;
     color: black;
-    width: 64%;
+    width: 100%;
 }
 
 
@@ -185,17 +185,25 @@
 
 }
 .Multi_title{
-    /* position: absolute; */
+    position: relative ;
+
     margin-top: 10% ;
+    margin-left: -15%;
    color: black;
-   font-weight: 700;
+   font-weight: 500;
     gap: 10px;
 
 }
+.Multi_title:hover{
+    cursor: pointer;
+    text-decoration: underline;
+}
 .Multi_image{
     /* position: absolute; */
-    margin-left: 40%;
-    margin-top: -30% ;
+    margin-left: 45%;
+    margin-top: -23% ;
+    width: 40%;
+    height: 30%;
     
     /* border: 1px solid red; */
     gap: 10px;
@@ -204,7 +212,7 @@
 
 .Multi_item{
     margin-top: 2%;
-    margin-left:-10% ;
+    margin-left: -15%;
     
     width: 100%;
     text-align: left;

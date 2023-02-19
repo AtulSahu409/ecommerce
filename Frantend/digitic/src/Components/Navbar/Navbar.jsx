@@ -14,34 +14,37 @@ const Navbar = () => {
     <div className={styled.container}>
         <nav className={styled.topnav}>
            <Text>logo</Text>
-           <InputGroup bg={"white"} color="black" w="40%" h={"10%"}>
+           <div className={styled.inputtop}>           
+           <InputGroup  bg={"white"} color="black" w="350px" h={"10%"}>
             <InputLeftElement
               pointerEvents='none'
               color='gray.300'
               fontSize='1.2em'
               
             />
-            <Input placeholder='Search Product here..' />
+            <Input  placeholder='Search Product here..' />
             <InputRightElement bg="yellow" children={<Search2Icon fontSize={"2xl"} color='green.500' />}  />
 
             </InputGroup>
+            </div>
+
            <div className={styled.topnavright}>
             <div className={styled.item}>
             <Image src={compare} alt="compare"/>
             
-             <Link><p>Compare <br/>Product</p></Link>
+             <Link><p className={styled.heading}>Compare <br/>Product</p></Link>
             </div>
             <div className={styled.item}>
             <Image src={wishlist} alt="compare"/>
-            <Link><p>Favouite<br/> Wishlist</p></Link>
+            <Link><p className={styled.heading}>Favouite<br/> Wishlist</p></Link>
             </div>
             <div className={styled.item}>
             <Image src={user} alt="compare"/>
-             <Link><p>Log in <br/> My Account</p></Link>
+             <Link><p className={styled.heading}>Log in<br/>MyAccount</p></Link>
             </div>
             <div className={styled.item}>
-             <Link><Image src={cart} alt="compare"/></Link>
-             <p>cart</p>
+             <Link><Image w="45px" src={cart} alt="compare"/></Link>
+             <p className={styled.heading}>cart</p>
             </div>
             
            </div>
@@ -49,7 +52,22 @@ const Navbar = () => {
 
         </nav>
         <Divider />
+        
+        <div className={styled.inputbottom}>           
+           <InputGroup  bg={"white"} color="black" ml="25%" mt="3%" w="50%" h={"10%"}>
+            <InputLeftElement
+              pointerEvents='none'
+              color='gray.300'
+              fontSize='1.2em'
+              
+            />
+            <Input  placeholder='Search Product here..' />
+            <InputRightElement bg="yellow" children={<Search2Icon fontSize={"2xl"} color='green.500' />}  />
+
+            </InputGroup>
+            </div>
         <nav className={styled.bottomnav}>
+        
     
         <div className={styled.item}>
              <div className={styled.icon}><CgMenuGridO fontSize={"30px"} p="10px" /></div>

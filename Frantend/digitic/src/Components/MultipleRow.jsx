@@ -1,26 +1,45 @@
-import React, { Component } from "react";
+import React, { Component, useEffect } from "react";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css"; 
 import "slick-carousel/slick/slick-theme.css";
-import laptop from "../Images/laptop.jpg"
-import camera from "../Images/camera.jpg"
-import game from "../Images/game.jpg"
-import mobile from "../Images/mobile.jpg"
-import watch from "../Images/watch.jpg"
-import acc from "../Images/acc.jpg"
-import headphone from "../Images/headphone.jpg"
-import homeapp from "../Images/homeapp.jpg"
-import speaker from "../Images/speaker.jpg"
-import tv from "../Images/tv.jpg"
+import Collect from "../Pages/Collect";
 
 import styled from "../Styles/Home.module.css";
 import { Divider } from "@chakra-ui/react";
-export default class MultipleRows extends Component {
-  render() {
-    const settings = {
+import { useDispatch, useSelector } from "react-redux";
+import {Collection} from "../Redux/Collection/action"
+import { useNavigate, useNavigation, useSearchParams } from "react-router-dom";
+
+export default function SimpleSlider () {
+  // const [Param,setParam]=useSearchParams() 
+  // console.log(Parma)
+ const dispatch=useDispatch()
+ const navigation=useNavigate()
+ const data=useSelector((state)=>state.collection.data)
+console.log(data,"data")
+ 
+useEffect(()=>{
+  dispatch(Collection)
+
+},[dispatch])
+
+const handle=(title)=>{
+  <Collect cat={title}/>
+  let cat=title.split(" ").join("_")
+  let Params={}
+  Params.category=cat;
+  
+  // setParam(Params)
+  navigation(`/collections/${cat}`)
+}
+ 
+    
+    var settings = {
       className: "center",
       centerMode: true,
       infinite: true,
+      autoplay: true,
+      autoplaySpeed: 3000,
       centerPadding: "100px",
       slidesToShow: 5,
       
@@ -53,76 +72,29 @@ export default class MultipleRows extends Component {
       <div className={styled.Multirow}>
         
         <Slider {...settings}>
-        
-          <div className={styled.Multi_container}>
-          
-            <div className={styled.Multi_title} >Computers & <br/> Laptop </div>
-            <div className={styled.Multi_item }> 8 Items</div>
-            <div className={styled.Multi_image} ><img src={laptop} alt="lap"/> </div>
-            <Divider/>
+        {
+          data && data.map((el)=>{
+            return(
             
-          </div>
-          <div className={styled.Multi_container}>
-            <div className={styled.Multi_title} >Computers & <br/> Laptop </div>
-            <div className={styled.Multi_item }> 8 Items</div>
-            <div className={styled.Multi_image} ><img src={camera} alt="lap"/> </div>
-            <Divider/>
-          </div>
-          <div className={styled.Multi_container}>
+            <div className={styled.Multi_container}>
           
-            <div className={styled.Multi_title} >Computers & <br/> Laptop </div>
-            <div className={styled.Multi_item }> 8 Items</div>
-            <div className={styled.Multi_image} ><img src={tv} alt="lap"/> </div>
+            <div onClick={(e)=>handle(el.Title)} className={styled.Multi_title} >{el.Title}</div>
+            <div className={styled.Multi_item }> {el.Item} Items</div>
+            <div className={styled.Multi_image} ><img src={el.Image} alt="lap"/> </div>
+             
             <Divider/>
-          </div>
-          <div className={styled.Multi_container}>
-            <div className={styled.Multi_title} >Computers & <br/> Laptop </div>
-            <div className={styled.Multi_item }> 8 Items</div>
-            <div className={styled.Multi_image} ><img src={watch} alt="lap"/> </div>
-            <Divider/>
+          
           </div>
 
-          <div className={styled.Multi_container}>
-            <div className={styled.Multi_title} >Computers & <br/> Laptop </div>
-            <div className={styled.Multi_item }> 8 Items</div>
-            <div className={styled.Multi_image} ><img src={game} alt="lap"/> </div>
-            <Divider/>
-          </div>
-          <div className={styled.Multi_container}>
-            <div className={styled.Multi_title} >Computers & <br/> Laptop </div>
-            <div className={styled.Multi_item }> 8 Items</div>
-            <div className={styled.Multi_image} ><img src={mobile} alt="lap"/> </div>
-            <Divider/>
-          </div>
-          <div className={styled.Multi_container}>
-            <div className={styled.Multi_title} >Computers & <br/> Laptop </div>
-            <div className={styled.Multi_item }> 8 Items</div>
-            <div className={styled.Multi_image} ><img src={headphone} alt="lap"/> </div>
-            <Divider/>
-          </div>
-          <div className={styled.Multi_container}>
-            <div className={styled.Multi_title} >Computers & <br/> Laptop </div>
-            <div className={styled.Multi_item }> 8 Items</div>
-            <div className={styled.Multi_image} ><img src={acc} alt="lap"/> </div>
-            <Divider/>
-          </div>
-          <div className={styled.Multi_container}>
-            <div className={styled.Multi_title} >Computers & <br/> Laptop </div>
-            <div className={styled.Multi_item }> 8 Items</div>
-            <div className={styled.Multi_image} ><img src={speaker} alt="lap"/> </div>
-            <Divider/>
-
-          </div>
-          <div className={styled.Multi_container}>
-            <div className={styled.Multi_title} >Computers & <br/> Laptop </div>
-            <div className={styled.Multi_item }> 8 Items</div>
-            <div className={styled.Multi_image} ><img src={homeapp} alt="lap"/> </div>
-            <Divider/>
-          </div>
-          
-          
+            )
+          })
+        }
         </Slider>
       </div>
+          
+          
+          
+          
+      
     );
   }
-}

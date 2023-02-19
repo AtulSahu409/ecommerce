@@ -6,7 +6,7 @@
 }
 .topnav{
     display: flex;
-    margin: 0 30px ;
+    /* margin: 0 30px ; */
     justify-content: space-around;
 }
 .topnavright{
@@ -38,4 +38,31 @@
 }
 .icon{
     margin-top: 10px;
+}
+.inputbottom{
+    display: none;
+}
+.inputtop{
+    display: block;
+}
+
+@media screen and (max-width: 984px){
+    .heading{
+        display: none;
+    }
+    .inputbottom{
+        display: none;
+    }
+}
+@media screen and (max-width: 710px){
+    .bottomnav{
+        display: none;
+    }   
+    .inputtop{
+        display: none;
+    }
+    .inputbottom{
+        display: block;
+        margin: 0 ;
+    }
 }
