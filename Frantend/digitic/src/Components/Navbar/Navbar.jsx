@@ -30,20 +30,51 @@ const Navbar = () => {
 
            <div className={styled.topnavright}>
             <div className={styled.item}>
-            <Image src={compare} alt="compare"/>
-            
+              <div className={styled.Navicon}>
+                <div className={styled.Naviconfrant}>
+                <Image  src={compare} alt="compare"/>
+                </div>
+                <div className={styled.Naviconback}>
+                <Image  src={compare} ml={{lg:"1%", base:"80%"}} mt={{base:"1%"}} alt="compare"/>
+                </div> 
+              </div>
              <Link><p className={styled.heading}>Compare <br/>Product</p></Link>
             </div>
             <div className={styled.item}>
-            <Image src={wishlist} alt="compare"/>
-            <Link><p className={styled.heading}>Favouite<br/> Wishlist</p></Link>
+            <div className={styled.Navicon}>
+                <div className={styled.Naviconfrant}>
+                <Image src={wishlist} alt="compare"/>
+                </div>
+                <div className={styled.Naviconback}>
+                <Image src={wishlist} ml={{lg:"1%",base:"80%"}} mt={{base:"1%"}} alt="compare"/>
+                </div> 
+              </div>
+            
+              <Link><p className={styled.heading}>Favouite<br/> Wishlist</p></Link>
             </div>
             <div className={styled.item}>
-            <Image src={user} alt="compare"/>
+            <div className={styled.Navicon}>
+                <div className={styled.Naviconfrant}>
+                <Image src={user} ml={{base:"-1%",lg:"10%"}} mt={{base:"1%"}} alt="compare"/>
+                </div>
+                <div className={styled.Naviconback}>
+                <Image src={user} ml={{lg:"1%",base:"80%"}} mt={{base:"1%"}} alt="compare"/>
+                </div> 
+              </div>
+            
              <Link><p className={styled.heading}>Log in<br/>MyAccount</p></Link>
             </div>
             <div className={styled.item}>
-             <Link><Image w="45px" src={cart} alt="compare"/></Link>
+             <Link>
+             <div className={styled.Navicon}>
+                <div className={styled.Naviconfrant}>
+                <Image w="45px" src={cart} ml={{lg:"-60%",base:"-15%"}} mt={{base:"-5%",lg:"1%"}} alt="compare"/>
+                </div>
+                <div className={styled.Naviconback}>
+                <Image w="45px" src={cart}  ml={{lg:"45%",base:"70%"}} mt={{base:"-5%",lg:"1%"}} alt="compare"/>
+                </div> 
+              </div>
+             </Link>
              <p className={styled.heading}>cart</p>
             </div>
             

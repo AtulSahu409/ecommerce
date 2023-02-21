@@ -1,29 +1,58 @@
 import styled from '../Styles/Collection.module.css'
-import React from 'react'
-import { Box, Breadcrumb, BreadcrumbItem, BreadcrumbLink, Checkbox,  Grid, Heading, Image, Input, Select, Tag, Text } from '@chakra-ui/react'
+import React, { useEffect } from 'react'
+import ReactStars from "react-rating-stars-component";
+import { Box, Breadcrumb, BreadcrumbItem, BreadcrumbLink, Button, Checkbox,  Grid, Heading, Image, Input, Select, Tag, Text } from '@chakra-ui/react'
 import {FaDollarSign} from "react-icons/fa"
-import {CiBag1, CiHeart} from "react-icons/ci"
-import {AiOutlineEye} from "react-icons/ai"
-import  {IoIosGitCompare} from "react-icons/io"
+import addcart from "../Images/add-cart.svg"
+
+import view from "../Images/view.svg"
+import compare from "../Images/prodcompare.svg"
+import{AiFillHeart,} from "react-icons/ai"
 import {IoReorderFourOutline, IoReorderThreeOutline, IoReorderTwoOutline} from "react-icons/io5"
 import { useState } from 'react'
-import { Link, useLocation } from 'react-router-dom';
-import {obj} from "./data"
+import { useLocation, useNavigate } from 'react-router-dom';
+import DrawerComponent from '../Components/Drawer'
+
+import { useDispatch, useSelector } from 'react-redux';
+import { Productdata } from '../Redux/Products/action';
+import SingleProduct from './SingleProduct';
+import MainRouter from './MainRouter';
 const Collect = (cat) => {
-  
+ 
+  const navigate=useNavigate()
   const location =useLocation()
   let path=location.pathname.split("/")
-  console.log(path[2])
-  console.log(obj)
-
+  // console.log(path[2],path[1])
   const [check,setcheck]=useState("")
-  const [grid,setgrid]=useState("")
+  const [grid,setgrid]=useState(5)
+  const [Shown, setIsShown] = useState("true"); 
+
+  const dispatch=useDispatch()
+  const obj =useSelector((state)=>state.Product.Product)
+// console.log(obj,"obj")
+  
+useEffect(()=>{
+   dispatch(Productdata(path[2])) 
+  },[])
+  
+  const single=(el)=>{
+    <SingleProduct el={el} />
+    navigate(`/products/${el.Title}`)
+    console.log(el)
+  }
+  
   
   const handle=()=>{}
-  const handleclick=(gr)=>{
-      console.log(gr)
-}
-  console.log(cat,"cat")
+  
+  const addwish=(index)=>{
+    console.log(index)
+  }
+    
+   
+     
+
+  
+  
   return (
     <div className={styled.Container}>
     <div className={styled.Containertop}>
@@ -65,7 +94,7 @@ const Collect = (cat) => {
             <Box mt={"10px"}><FaDollarSign fontSize={"15px"}  color="#777777"/></Box><Input w="30%" Type={"number"} bg="#f7f7f7" />
         </Box>
         <Heading size={"xs"} p="4%">Color</Heading>
-          <Grid gridTemplateColumns={"repeat(8,.5fr)" } gap="1" >
+          <Grid templateColumns={{ xl:"repeat(6, 1fr)" ,md: "repeat(5, 1fr)" }} gap="1" >
             <Input width={"15%"} h="30px" borderRadius={"50%"} bg="#000000"/>
             <Input width={"15%"} h="30px" borderRadius={"50%"} bg="#0DFDFC"/>
             <Input width={"15%"} h="30px" borderRadius={"50%"} bg="#11273B"/>
@@ -113,8 +142,9 @@ const Collect = (cat) => {
 
       <div className={styled.rightbox}>
         <div className={styled.righttopbox}>
-          <Box display={"flex"} gap="2" alignItems={"center"} p="auto">
-            <Heading size={"xs"}  p="1">Sort by:</Heading>
+        <div className={styled.rightfilter}>
+          <Box  display={"flex"} gap="2" alignItems={"center"} p="auto">
+            <Heading  size={"xs"}  p="1">Sort by:</Heading>
             <Select className={styled.lefttext} w="70%" fontSize="14px" fontFamily={"sans-serif"} color={"#777777"}  p="1" bg="#f7f7f7">
               <option  value='Feature'>Feature</option>
               <option  value='Bestselling'>Best selling</option>
@@ -126,48 +156,62 @@ const Collect = (cat) => {
               <option  value='Date_n-o'>Date,new to old</option>
             </Select>
           </Box>
+        </div>
+          <div className={styled.rightfilterbnt}>
+            <DrawerComponent/>
+            
+          </div>
           <Box display={"flex"} gap="2" mt="1%" left={"0"} >
-            <Box  border={"2px solid black"} borderRadius="10px" bg="#f7f7f7" m="auto"  onClick={(e)=>handleclick("repeat(4,1fr)")} >
-              <IoReorderFourOutline className={styled.burgaricon}  />
+            <Box  border={"2px solid black"} borderRadius="10px" _hover={{bg:"#febd69",color:"white"}} cursor={"pointer"} bg="#f7f7f7" m="auto"  onClick={(e)=>setgrid("5")} >
+              <IoReorderFourOutline className={styled.burgaricon}   />
             </Box>
-            <Box  border={"2px solid black"} borderRadius="10px" m="auto" bg="#f7f7f7" >
+            <Box  border={"2px solid black"} borderRadius="10px" m="auto" bg="#f7f7f7" _hover={{bg:"#febd69", color:"white" }} cursor={"pointer"} onClick={(e)=>setgrid("3")} >
               <IoReorderThreeOutline className={styled.burgaricon}   />
             </Box>
-            <Box  border={"2px solid black"} borderRadius="10px" m="auto" bg="#f7f7f7" >
+            <Box  border={"2px solid black"} borderRadius="10px" m="auto" bg="#f7f7f7" _hover={{bg:"#febd69" , color:"white"}} cursor={"pointer"} onClick={(e)=>setgrid("2")} >
               <IoReorderTwoOutline className={styled.burgaricon}  />
             </Box>
-            <Box  border={"2px solid black"} borderRadius="10px" m="auto" bg="#f7f7f7" >
+            <Box  border={"2px solid black"} borderRadius="10px" m="auto" bg="#f7f7f7" _hover={{bg:"#febd69" , color:"white"}} cursor={"pointer"} onClick={(e)=>setgrid("1")} >
               <IoReorderThreeOutline fontSize={"30px"} />
             </Box>
             
           </Box>
         </div>
-        <div className={styled.rightbottombox}>
+        <div className={`${grid==1?(styled.rightbottombox_1):grid==2?(styled.rightbottombox_2):grid==3?(styled.rightbottombox_3):(styled.rightbottombox)}`}>
           {
-            obj && obj.map((el)=>{
+            obj && obj.map((el,index)=>{
               return(
-                <div className={styled.card}>
+                <div className={`${grid==1?(styled.card1):(styled.card)}`} onClick={()=>single(el)} >
                 <Box display={"flex"}  >
-                <Image w="90%" mt="-30%"  h="250px"  src={el.Images[0]} />
-                  <Box position={"relative"} zIndex="100" >
-                    <CiHeart fontSize={"25px"} />
-                    <Box overflow={'hidden'} className={styled.icon}>
-                    <AiOutlineEye fontSize={"25px"}  />
-                    <IoIosGitCompare fontSize={"25px"}/>
-                    <CiBag1 fontSize={"25px"} />
+                  <Image w="90%" mt={`${grid==1?"-5%":"10%"}`}   h="250px" src={`${Shown?el.Images[0]:el.Images[1]}`}  onMouseEnter={() => setIsShown(false)} onMouseLeave={() => setIsShown(true)} />
+                 
+                    <Box position={"relative"} zIndex="100" mt={`${grid==1?"-10%":""}`} >
+                      <AiFillHeart fontSize={"25px"} className={styled.hearticon} onClick={()=>addwish(index)} />
+                      <Box overflow={'hidden'} className={styled.icon}>
+                      <Image src={compare} mt="10px" fontSize={"25px"}  />
+                      <Image src={view} mt="10px" fontSize={"25px"}/>
+                      <Image src={addcart} mt="10px" fontSize={"25px"} />
                   </Box>
                   </Box>
                     
                 </Box>
                 
-                <Box ml="10%">
-                  <Text>{el.Brand}</Text>
-                  <Heading size={"xs"}>{el.Title}</Heading>
-                  <Text>stars</Text>
-                  <Box display={"flex"}>
-                    <Box mt={"5px"}><FaDollarSign fontSize={"15px"}  color="#777777"/></Box><Text>{el.Price}</Text>
+                <div className={styled.card_information__wrapper} >
+                  <div className={styled.card_caption}>{el.Brand}</div>
+                  <div className={styled.card_information__text}>{el.Title}</div>
+                  <ReactStars
+                     count={5}
+                     size={24}
+                     value={el.Rating}
+                     edit={false}
+                     activeColor="#ffd700"
+                    />
+                    <div className={`${grid==1?(styled.card_caption_des):(styled.card_caption_des_none)}`}>{el.Discription}</div>
+                  <Box display={`${grid==1?"none":"flex"}`} >
+                    <Box mt={"5px"}><FaDollarSign fontSize={"15px"}  color="#777777"/></Box>
+                    <div className={styled.price}>{el.Price}</div>
                   </Box>
-                </Box>
+                </div>
                 </div>
               )
             }) 

@@ -18,6 +18,8 @@ export default class Responsive extends Component {
       speed: 500,
       slidesToShow: 5,
       slidesToScroll: 5,
+      autoplay: true,
+      autoplaySpeed: 3000,
       initialSlide: 0,
       responsive: [
         {
@@ -41,60 +43,40 @@ export default class Responsive extends Component {
       ]
     };
     return (
-      <div className={styled.serviceslider}>
+      <div className={styled.Brandslider}>
         
         <Slider {...settings}>
-        <div className={styled.service}>
+        <div className={styled.Brand}>
         
-            <Image  src={brand} w="50px" alt="service"/>
+            <Image  src={brand} alt="Brand"/>
         
 
         </div>
+        <div className={styled.Brand}>
+        
+            <Image  src={brand1}  alt="Brand"/>
+        
 
-        {/* <div className={styled.service}>
-        <div>
-            <Image  src={service1} w="40px" alt="service"/>
         </div>
+        <div className={styled.Brand}>
+        
+            <Image  src={brand2} alt="Brand"/>
+        
 
-        <div className={styled.service_description}>
-            <div className={styled.service_title} >Daily  surprise offers</div>
-            <div className={styled.service_subtitle}>Save up to 25% off</div>
         </div>
-        </div>
+        <div className={styled.Brand}>
+        
+            <Image  src={brand3}  alt="Brand"/>
+        
 
-        <div className={styled.service}>
-        <div>
-            <Image  src={service2} w="35px" alt="service"/>
         </div>
+        <div className={styled.Brand}>
+        
+            <Image  src={brand4}  alt="Brand"/>
+        
 
-        <div className={styled.service_description}>
-            <div className={styled.service_title} >Support 24/7</div>
-            <div className={styled.service_subtitle}>Shop with an expert</div>
         </div>
-        </div>
-
-        <div className={styled.service}>
-        <div>
-            <Image  src={service3} w="40px" alt="service"/>
-        </div>
-
-        <div className={styled.service_description}>
-            <div className={styled.service_title} >Affordable Prices</div>
-            <div className={styled.service_subtitle}>Get Factory direct price</div>
-        </div>
-        </div>
-
-        <div className={styled.service}>
-        <div>
-            <Image  src={service4} w="47px" alt="service"/>
-        </div>
-
-        <div className={styled.service_description}>
-            <div className={styled.service_title} >Secure Payments</div>
-            <div className={styled.service_subtitle}>100% Protected Payments</div>
-        </div>
-        </div> */}
-
+        
        
           
         </Slider>

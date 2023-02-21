@@ -66,7 +66,7 @@ const Home = () => {
     </div>
     
   </div>
-
+<div className={styled.home_wrapper}>
   <div className={styled.home_wrapper2}>
    <ResponsiveSlider/>
   
@@ -75,8 +75,12 @@ const Home = () => {
     <MultiplyRows/>
      
   </div>
+  <div className={styled.home_wrapper4}>
+    <BrandSlider/>
+     
+  </div>
   
-
+</div>
   </div>
   )
 }

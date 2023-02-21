@@ -11,7 +11,8 @@
 }
 .topnavright{
     display: flex;
-    gap:20px;
+    gap:40px;
+    /* margin-left:10%; */
     justify-content: space-between;
 
 
@@ -24,7 +25,7 @@
 }
 .item{
     display: flex;
-    gap:10px;
+    gap:30px;
     justify-content: center;
 }
 .item2{
@@ -45,7 +46,47 @@
 .inputtop{
     display: block;
 }
-
+.Navicon {
+    position: relative;
+    width:100%;
+    height: 100%;
+    margin-left: -50%;
+    text-align: center;
+    transition: transform 0.6s;
+    transform-style: preserve-3d;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+  }
+.Navicon:hover{
+    transform: rotateY(200deg);;
+}
+.Naviconback{
+color: white;
+  transform: rotateY(200deg);
+}
+ .Naviconfrant {
+    position: absolute;
+    width: 100px;
+    height: 100%;
+    
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+  }
+  
+  /* .Naviconback:hover{
+    display: block;
+  } */
+  .Naviconback{
+  
+    position: absolute;
+    width: 100px;
+    height: 100%;
+    margin-left: -100%;
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+  }
+.heading{
+    margin-left: -45%;
+}
 @media screen and (max-width: 984px){
     .heading{
         display: none;
@@ -64,5 +105,8 @@
     .inputbottom{
         display: block;
         margin: 0 ;
+    }
+    .topnavright{
+        margin-bottom: 8%;
     }
 }
