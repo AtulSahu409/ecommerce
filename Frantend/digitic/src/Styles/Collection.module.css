@@ -232,8 +232,13 @@
     display: none;
 }
 
-.hearticon{
+.hearticonred{
     color: red;
+    margin-left:-20%;
+}
+.hearticonblack{
+    color:black;
+    margin-left:-20%;
 }
 @media screen and  (max-width: 1100px){
     .leftbottom{

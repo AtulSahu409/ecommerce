@@ -23,7 +23,7 @@ const Collect = (cat) => {
   const location =useLocation()
   let path=location.pathname.split("/")
   // console.log(path[2],path[1])
-  const [check,setcheck]=useState("")
+  const [check,setcheck]=useState(true)
   const [grid,setgrid]=useState(5)
   const [Shown, setIsShown] = useState("true"); 
 
@@ -46,6 +46,8 @@ useEffect(()=>{
   
   const addwish=(index)=>{
     console.log(index)
+    check?setcheck(false):setcheck(true)
+    console.log(check)
   }
     
    
@@ -181,12 +183,12 @@ useEffect(()=>{
           {
             obj && obj.map((el,index)=>{
               return(
-                <div className={`${grid==1?(styled.card1):(styled.card)}`} onClick={()=>single(el)} >
+                <div className={`${grid==1?(styled.card1):(styled.card)}`}  >
                 <Box display={"flex"}  >
-                  <Image w="90%" mt={`${grid==1?"-5%":"10%"}`}   h="250px" src={`${Shown?el.Images[0]:el.Images[1]}`}  onMouseEnter={() => setIsShown(false)} onMouseLeave={() => setIsShown(true)} />
+                  <Image w="90%" mt={`${grid==1?"-5%":"10%"}`}    h="250px" src={`${Shown?el.Images[0]:el.Images[1]}`}  onMouseEnter={() => setIsShown(false)} onMouseLeave={() => setIsShown(true)} onClick={()=>single(el)} />
                  
                     <Box position={"relative"} zIndex="100" mt={`${grid==1?"-10%":""}`} >
-                      <AiFillHeart fontSize={"25px"} className={styled.hearticon} onClick={()=>addwish(index)} />
+                      <AiFillHeart fontSize={"25px"}  className={`${check?(styled.hearticonblack):styled.hearticonred}`} onClick={()=>addwish(index)} />
                       <Box overflow={'hidden'} className={styled.icon}>
                       <Image src={compare} mt="10px" fontSize={"25px"}  />
                       <Image src={view} mt="10px" fontSize={"25px"}/>

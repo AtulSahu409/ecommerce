@@ -1,0 +1,23 @@
+.Container{
+    display: grid;
+
+    grid-template-columns:repeat(2,1fr);
+    gap:2;
+    margin: 1%;
+    
+    box-shadow: 0 0 10px #0000001a;
+    border-radius:10px;
+    
+    
+}
+
+.rightContainer{
+    box-shadow: 0 0 10px #0000001a;
+    border-radius:10px;
+
+}
+.leftContainer{
+    box-shadow: 0 0 10px #0000001a;
+    border-radius:10px;
+    
+}
