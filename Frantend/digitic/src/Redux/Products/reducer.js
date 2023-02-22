@@ -1,8 +1,10 @@
 import * as types from "./actiontype"
 
 const initialstate={
-    isError:false,
+    
     Product:[],
+    singledata:[],
+    isError:false,
     IsLoading:false,
 };
 
@@ -28,6 +30,25 @@ switch(type){
             isError:true,
             Product:[],
         };            
+        case types.GET_single_REQUEST:
+        return{
+            ...state,
+            IsLoading:true,
+        };
+
+    case types.GET_single_SUCCESS:
+        return{
+            ...state,
+            IsLoading:false,
+            singledata:payload
+        };
+
+    case types.GET_single_FAILURE:
+        return{
+            ...state,
+            isError:true,
+            singledata:[],
+        };               
         default:
         return state
         

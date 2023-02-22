@@ -14,7 +14,7 @@ import { useLocation, useNavigate } from 'react-router-dom';
 import DrawerComponent from '../Components/Drawer'
 
 import { useDispatch, useSelector } from 'react-redux';
-import { Productdata } from '../Redux/Products/action';
+import { Productdata, singledata } from '../Redux/Products/action';
 import SingleProduct from './SingleProduct';
 import MainRouter from './MainRouter';
 const Collect = (cat) => {
@@ -36,9 +36,9 @@ useEffect(()=>{
   },[])
   
   const single=(el)=>{
-    <SingleProduct el={el} />
+    dispatch(singledata(el._id))
     navigate(`/products/${el.Title}`)
-    console.log(el)
+    console.log(el,el._id)
   }
   
   
@@ -185,8 +185,7 @@ useEffect(()=>{
               return(
                 <div className={`${grid==1?(styled.card1):(styled.card)}`}  >
                 <Box display={"flex"}  >
-                  <Image w="90%" mt={`${grid==1?"-5%":"10%"}`}    h="250px" src={`${Shown?el.Images[0]:el.Images[1]}`}  onMouseEnter={() => setIsShown(false)} onMouseLeave={() => setIsShown(true)} onClick={()=>single(el)} />
-                 
+                  <Image w="90%" mt={`${grid==1?"-5%":"10%"}`}    h="250px" src={`${Shown?el.Images[0]:el.Images[1]}`}  onMouseEnter={() => setIsShown(false)} onMouseLeave={() => setIsShown(true)} onClick={()=>single(el)} />                
                     <Box position={"relative"} zIndex="100" mt={`${grid==1?"-10%":""}`} >
                       <AiFillHeart fontSize={"25px"}  className={`${check?(styled.hearticonblack):styled.hearticonred}`} onClick={()=>addwish(index)} />
                       <Box overflow={'hidden'} className={styled.icon}>

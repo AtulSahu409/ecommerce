@@ -11,7 +11,7 @@ const MainRouter = () => {
         <Routes>
             <Route path="/" element={<Home/>}/>
             <Route path="/collections/:cat" element={<Collection/>}/>
-            <Route path="/products/:title" element={<SingleProduct el={"id"}/>}/>
+            <Route path="/products/:title" element={<SingleProduct />}/>
 
         </Routes>
     </Box>
