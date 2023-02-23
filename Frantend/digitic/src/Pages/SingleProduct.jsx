@@ -1,4 +1,4 @@
-import { Accordion, AccordionButton, AccordionIcon, AccordionItem, AccordionPanel, Box, Button, Divider, Grid, Heading, Image, Input, Text } from '@chakra-ui/react';
+import { Accordion, AccordionButton, AccordionIcon, AccordionItem, AccordionPanel, Box, Button, Divider, Grid, Heading, Image, Input, Text, Textarea } from '@chakra-ui/react';
 import React, { useEffect, useState } from 'react'
 import { AiFillHeart, AiFillLinkedin, AiOutlineGithub, AiOutlineYoutube } from 'react-icons/ai';
 import { FaDollarSign } from 'react-icons/fa';
@@ -209,7 +209,7 @@ const SingleProduct = () => {
         <Heading>Reviews</Heading>
       </div>
       <div>
-      <Accordion  allowMultiple w="200%">
+      <Accordion   defaultIndex={[0]} allowMultiple w="200%">
         <AccordionItem>
           <h2>
             <AccordionButton>
@@ -229,10 +229,16 @@ const SingleProduct = () => {
             </AccordionButton>
           </h2>
           <AccordionPanel pb={4}>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
-            tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
-            veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea
-            commodo consequat.
+            <Heading color={"#777777"} size={"md"}>Write A Review</Heading>
+            <label style={{color:"#777777"}}>Name</label>
+            <Input placeholder="Enter your name" />
+            <label style={{color:"#777777"}}>Email</label>
+            <Input placeholder="Enter your email" />
+            <label style={{color:"#777777"}} >Review Title</label>
+            <Input placeholder="Give your review a title" />
+            <label style={{color:"#777777"}} >Body of Review (1500)</label>
+            <Textarea placeholder="Write your comments here" />
+            <Button mt="3%" borderRadius={"20px"} color={"white"} bg={"#232F3E"} _hover={{bg:"#FEBD69"}}>Submit Review</Button>
           </AccordionPanel>
         </AccordionItem>
         </Accordion>
