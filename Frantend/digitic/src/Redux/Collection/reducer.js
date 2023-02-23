@@ -7,8 +7,10 @@ const initialstate={
 };
 
 const reducer=(state=initialstate,action)=>{
-const {type,payload}=action
-switch(type){
+
+    const {type,payload}=action
+
+    switch(type){
     case types.GET_Collection_REQUEST:
         return{
             ...state,
@@ -28,8 +30,9 @@ switch(type){
             isError:true,
             data:[],
         };            
-        default:
-        return state
+        
+    default:
+    return state
         
 }
 }
