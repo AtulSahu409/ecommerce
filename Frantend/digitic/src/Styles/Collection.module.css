@@ -265,5 +265,22 @@
     .rightfilterbnt{
         display: block;
     }
+    .rightbottombox{
 
+        display: grid;
+        /* position: ; */
+        grid-template-columns: repeat(3,1fr);
+        /* border: 10px solid yellow; */
+       
+    }
+
+}
+@media screen and (max-width: 710px){
+    .rightbottombox{
+
+        display: grid;
+        /* position: ; */
+        grid-template-columns: repeat(2,1fr);
+        
+    }
 }

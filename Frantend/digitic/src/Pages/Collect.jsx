@@ -36,7 +36,7 @@ useEffect(()=>{
   },[])
   
   const single=(el)=>{
-    dispatch(singledata(el._id))
+    dispatch(singledata(el.Title))
     navigate(`/products/${el.Title}`)
     console.log(el,el._id)
   }
@@ -183,7 +183,7 @@ useEffect(()=>{
           {
             obj && obj.map((el,index)=>{
               return(
-                <div className={`${grid==1?(styled.card1):(styled.card)}`}  >
+                <div className={`${grid==1?(styled.card1):(styled.card)}`} key={el._id} >
                 <Box display={"flex"}  >
                   <Image w="90%" mt={`${grid==1?"-5%":"10%"}`}    h="250px" src={`${Shown?el.Images[0]:el.Images[1]}`}  onMouseEnter={() => setIsShown(false)} onMouseLeave={() => setIsShown(true)} onClick={()=>single(el)} />                
                     <Box position={"relative"} zIndex="100" mt={`${grid==1?"-10%":""}`} >

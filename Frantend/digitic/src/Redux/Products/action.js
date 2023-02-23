@@ -17,10 +17,10 @@ const Productdata =(Cat)=>(dispatch)=> {
   
 }
 
-const singledata =(id)=>async(dispatch)=> {
+const singledata=(id)=>(dispatch)=> {
     console.log(id)
     dispatch({type:types.GET_single_REQUEST})
-     return await axios.get(`http://localhost:3005/product/single/${id}`)
+     return axios.get(`http://localhost:3005/product/single/${id}`)
      .then((r) => {
          dispatch({type:types.GET_single_SUCCESS, payload:r.data})
          console.log(r)

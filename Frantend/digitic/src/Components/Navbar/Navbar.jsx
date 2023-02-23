@@ -1,4 +1,4 @@
-import { Box, Divider, Image, Input, InputGroup, InputLeftElement, InputRightElement, Link, Select, Stack, Text } from '@chakra-ui/react'
+import { Box, Divider, Image, Input, InputGroup, InputLeftElement, InputRightElement, Select, Stack, Text } from '@chakra-ui/react'
 
 import {Search2Icon} from "@chakra-ui/icons"
 
@@ -7,13 +7,14 @@ import compare from "../../Images/compare.svg"
 import cart  from "../../Images/cart.svg"
 import user  from "../../Images/user.svg"
 import wishlist from "../../Images/wishlist.svg"
+import {Link} from "react-router-dom"
 import React from 'react'
 import styled from "../../Styles/Navbar.module.css"
 const Navbar = () => {
   return (
     <div className={styled.container}>
         <nav className={styled.topnav}>
-           <Text>logo</Text>
+          <Link  to="/"> <Text>logo</Text></Link>
            <div className={styled.inputtop}>           
            <InputGroup  bg={"white"} color="black" w="350px" h={"10%"}>
             <InputLeftElement
@@ -54,15 +55,15 @@ const Navbar = () => {
             </div>
             <div className={styled.item}>
             <div className={styled.Navicon}>
-                <div className={styled.Naviconfrant}>
+            <Link to="/login">  <div className={styled.Naviconfrant}>
                 <Image src={user} ml={{base:"-1%",lg:"10%"}} mt={{base:"1%"}} alt="compare"/>
                 </div>
                 <div className={styled.Naviconback}>
                 <Image src={user} ml={{lg:"1%",base:"80%"}} mt={{base:"1%"}} alt="compare"/>
-                </div> 
+                </div></Link>  
               </div>
             
-             <Link><p className={styled.heading}>Log in<br/>MyAccount</p></Link>
+              <Link to="/login"><p className={styled.heading}>Log in<br/>MyAccount</p></Link>
             </div>
             <div className={styled.item}>
              <Link>
@@ -120,7 +121,7 @@ const Navbar = () => {
                 <Link> <p>BLOGS</p></Link>
             </div>
             <div >
-                <Link> <p>CONTACT</p></Link>
+                <a href="/login"> <p>CONTACT</p></a>
             </div>
         </div>
         
