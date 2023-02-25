@@ -43,15 +43,17 @@ const Navbar = () => {
             </div>
             <div className={styled.item}>
             <div className={styled.Navicon}>
-                <div className={styled.Naviconfrant}>
+            <Link to="/wishlist">    
+            <div className={styled.Naviconfrant}>
                 <Image src={wishlist} alt="compare"/>
                 </div>
                 <div className={styled.Naviconback}>
                 <Image src={wishlist} ml={{lg:"1%",base:"80%"}} mt={{base:"1%"}} alt="compare"/>
-                </div> 
+                </div>
+              </Link> 
               </div>
             
-              <Link><p className={styled.heading}>Favouite<br/> Wishlist</p></Link>
+              <Link to="/wishlist"><p className={styled.heading}>Favouite<br/> Wishlist</p></Link>
             </div>
             <div className={styled.item}>
             <div className={styled.Navicon}>

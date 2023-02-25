@@ -11,6 +11,7 @@ import ReactStars from 'react-rating-stars-component'
 import { useDispatch } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
 import { singledata } from '../Redux/Products/action'
+import { deletewish,postwish } from '../Redux/Wishlist/action'
 
 
 const ProductToggle = ({el,grid}) => {
@@ -27,17 +28,29 @@ const ProductToggle = ({el,grid}) => {
       }
 
       const addwish=()=>{
-        console.log("tr")
+        
         check?setcheck(false):setcheck(true)
+        if(check){
+          console.log(el._id,"id")
+          
+          // dispatch(deletewish(el._id))
+          dispatch(postwish(el))
+        }
+        else if(check==false){
+          console.log(el._id)
+          
+          dispatch(deletewish(el._id))
+        }
+
         console.log(check)
       }
   return (
 
-<div className={`${grid==1?(styled.card1):(styled.card)}`} key={el._id} >
+          <div className={`${grid==1?(styled.card1):(styled.card)}`} key={el._id} >
                 <Box display={"flex"}>
                   <Image w="90%" mt={`${grid==1?"-5%":"10%"}`}    h="250px" src={`${Shown?el.Images[0]:el.Images[1]}`}  onMouseEnter={() => setIsShown(false)} onMouseLeave={() => setIsShown(true)} onClick={()=>single(el)} />                
                     <Box position={"relative"} zIndex="100" mt={`${grid==1?"-10%":""}`} >
-                      <AiFillHeart fontSize={"25px"}  className={`${check?(styled.hearticonblack):styled.hearticonred}`} onClick={()=>addwish()} />
+                      <AiFillHeart fontSize={"25px"}  className={`${check?(styled.hearticonblack):styled.hearticonred}`} onClick={addwish} />
                       <Box overflow={'hidden'} className={styled.icon}>
                       <Image src={compare} mt="10px" fontSize={"25px"}  />
                       <Image src={view} mt="10px" fontSize={"25px"}/>

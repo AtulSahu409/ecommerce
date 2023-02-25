@@ -10,6 +10,7 @@ import { useLocation, useParams } from 'react-router-dom';
 import { singledata } from '../Redux/Products/action';
 import styled from "../Styles/SingleProduct.module.css";
 import { BsInstagram } from 'react-icons/bs';
+import BreadcrumbCompnent from '../Components/BreadcrumbCompnent';
 const SingleProduct = () => {
   const [check,setcheck]=useState(true)
   const [Quantity,setQuantity]=useState(1)
@@ -64,10 +65,15 @@ let qty=obj?.Availability
     
     console.log("single",title);
   return (
+    <>
+    <Box mt="-2%" mb="2%" ml="35%">
+      <BreadcrumbCompnent pa={title}/>
+    </Box>
     <div className={styled.Container}>
     {
       IsLoading?"load............":""
     }
+    
       <div className={styled.rightContainer}>
         <div className={styled.ImageContainer}>
         <div className={styled.ZoomImage}>
@@ -259,6 +265,7 @@ let qty=obj?.Availability
     
   
   </div>
+  </>
   )
 }
 

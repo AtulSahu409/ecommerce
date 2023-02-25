@@ -5,6 +5,7 @@ import Collection from './Collect'
 import Home from './Home'
 import Signup from '../Components/Signup'
 import SingleProduct from './SingleProduct'
+import Wishlist from './Wishlist'
 const MainRouter = () => {
   
   return (
@@ -14,6 +15,8 @@ const MainRouter = () => {
             <Route path="/collections/:cat" element={<Collection/>}/>
             <Route path="/products/:title" element={<SingleProduct />}/>
             <Route path="/login" element={<Signup/>}/>
+            <Route path="/wishlist" element={<Wishlist/>}/>
+
 
         </Routes>
     </Box>

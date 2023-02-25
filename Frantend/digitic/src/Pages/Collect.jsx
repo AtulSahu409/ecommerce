@@ -1,13 +1,8 @@
 import styled from '../Styles/Collection.module.css'
 import React, { useEffect } from 'react'
-import ReactStars from "react-rating-stars-component";
-import { Box, Breadcrumb, BreadcrumbItem, BreadcrumbLink, Button, Checkbox,  Grid, Heading, Image, Input, Select, Tag, Text } from '@chakra-ui/react'
+import { Box, Checkbox,  Grid, Heading, Input, Select, Tag, Text } from '@chakra-ui/react'
 import {FaDollarSign} from "react-icons/fa"
-import addcart from "../Images/add-cart.svg"
-
-import view from "../Images/view.svg"
-import compare from "../Images/prodcompare.svg"
-import{AiFillHeart,} from "react-icons/ai"
+import BreadcrumbCompnent from '../Components/BreadcrumbCompnent';
 import {IoReorderFourOutline, IoReorderThreeOutline, IoReorderTwoOutline} from "react-icons/io5"
 import { useState } from 'react'
 import { useLocation, useNavigate } from 'react-router-dom';
@@ -15,20 +10,20 @@ import DrawerComponent from '../Components/Drawer'
 import ProductToggle from '../Components/ProductToggle';
 import { useDispatch, useSelector } from 'react-redux';
 import { Productdata, singledata, sortasc, sortdesc, sortprice, sorttitleaz, sorttitleza } from '../Redux/Products/action';
-import SingleProduct from './SingleProduct';
-import MainRouter from './MainRouter';
+
 const Collect = (cat) => {
  
   const navigate=useNavigate()
   const location =useLocation()
   let path=location.pathname.split("/")
-  // console.log(path[2],path[1])
+  let newpath=path[2]
+  console.log(newpath)
   const [check,setcheck]=useState(true)
-  const [filter,setfilter]=useState("")
+
   const [grid,setgrid]=useState(5)
-  const [Shown, setIsShown] = useState("true"); 
+ 
 const [gt,setgt]=useState(1)
-const [lt,setlt]=useState(1)
+const [lt,setlt]=useState(1000)
 
   const dispatch=useDispatch()
   var obj =useSelector((state)=>state.Product.Product)
@@ -73,11 +68,6 @@ useEffect(()=>{
   } 
      
 
-  const handleprice=(e)=>{
-    let price=e.target.value
-    console.log(price)
-  }
-
   useEffect(()=>{
     dispatch(sortprice(path[2],gt,lt))
   },[gt,lt])
@@ -85,16 +75,9 @@ useEffect(()=>{
   return (
     <div className={styled.Container}>
     <div className={styled.Containertop}>
-    <Breadcrumb fontWeight='medium' fontSize='sm'>
-      <BreadcrumbItem>
-        <BreadcrumbLink href='/'>Home</BreadcrumbLink>
-      </BreadcrumbItem>
-
-      <BreadcrumbItem>
-        <BreadcrumbLink >{path[2]}</BreadcrumbLink>
-      </BreadcrumbItem>
-
-  </Breadcrumb>
+    
+    <BreadcrumbCompnent pa={newpath}/>
+  
   </div>
   <div className={styled.Containerbottom}>
       <div className={styled.leftbox}>
