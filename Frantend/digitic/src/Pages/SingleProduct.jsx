@@ -16,39 +16,49 @@ const SingleProduct = () => {
   const {title}=useParams()
   const location=useLocation()
   const dispatch=useDispatch()
-  // const obj1 =useSelector((state)=>state.Product.Product)
-  // let arr=[]
-  // console.log(obj1,"obj1",arr)
   
-    const obj =useSelector((state)=>state.Product.singledata)
-    const {isError,IsLoading} =useSelector((state)=>state.Product)  
+  const obj =useSelector((state)=>state.Product.singledata) 
+  
     
-   let qty=obj[0].Availability
-    const getdata=()=>{
+  const {isError,IsLoading} =useSelector((state)=>state.Product)  
+
+ const [load,setload]=useState(true)
+    
+   const getdata=()=>{
       dispatch(singledata(title))
       
     }    
 
     useEffect(()=>{
-      console.log("se",);
+      
       getdata()
-    },[title])
+      
+    },[])
+
+  useEffect(()=>{
+    if(obj._id){
+      setload(false)
+    }
+
+  },[obj])
   
-    console.log(isError,IsLoading)
-    console.log(obj)
+  console.log(isError,IsLoading)
+
     
     const addwish=(index)=>{
       console.log(index)
       check?setcheck(false):setcheck(true)
       console.log(check)
     }
+  
 
+    if(load){
+      return(<div>load.........</div>)
+    }
    
-  if(IsLoading){
-    
-    return(<div>loading.....</div>)
-  }
-  // getdata()
+console.log(obj)  
+let qty=obj?.Availability
+
   
   
     
@@ -68,15 +78,15 @@ const SingleProduct = () => {
                 zoomLensStyle:"opacity: 0",
                 zoomPosition:"original",
                 zoomWidth: 600,
-                img:obj[0].Images[0] 
+                img:obj?.Images 
                 }} />
             </div>
           </div>
           <Grid ml="1%"  mr="1%" mt="-10%" gridTemplateColumns={"repeat(2,1fr)"} gap="3">
-            <div className={styled.smallimage}><Image src={obj[0].Images[0]} /></div>
-            <div className={styled.smallimage}><Image src={obj[0].Images[1]} alt="img1" /></div>
-            <div className={styled.smallimage}><Image src={obj[0].Images[2]} alt="img1" /></div>
-            <div className={styled.smallimage}><Image src={obj[0].Images[3]} alt="img1" /></div>
+            <div className={styled.smallimage}><Image src={obj.Images[0]} /></div>
+            <div className={styled.smallimage}><Image src={obj.Images[1]} alt="img1" /></div>
+            <div className={styled.smallimage}><Image src={obj.Images[2]} alt="img1" /></div>
+            <div className={styled.smallimage}><Image src={obj.Images[3]} alt="img1" /></div>
 
             
             
@@ -87,46 +97,46 @@ const SingleProduct = () => {
         </div>
       </div>
     <div className={styled.leftContainer}>
-      <Heading m="1% 10%" size="md" >{obj[0].Title}</Heading>
+      <Heading m="1% 10%" size="md" >{obj.Title}</Heading>
       <Divider/>
       <Box display={"flex"} >
         <Box m={"5px"} ml="2%" ><FaDollarSign fontSize={"15px"}  color="black"/></Box>
-          <div className={styled.price}>{obj[0].Price}</div>
+          <div className={styled.price}>{obj.Price}</div>
         </Box>
        <Box ml={"4"}> <ReactStars
           count={5}
           size={20}
-          value={obj[0].Rating}
+          value={obj.Rating}
           edit={false}
           activeColor="#ffd700"
         />
         <Text color={"#777777"} fontSize={"14px"} >Write a review</Text>
         <Divider/>
-        <Box mt="2%" display={"flex"}><Heading size={"sm"}>Type:</Heading><Text color={"#777777"} fontSize={"14px"}>{obj[0].Type}</Text></Box>
-        <Box mt="2%" display={"flex"}><Heading size={"sm"}>Brand:</Heading><Text color={"#777777"} fontSize={"14px"}>{obj[0].Brand}</Text></Box>
-        <Box mt="2%" display={"flex"}><Heading size={"sm"}>Categories:</Heading>{obj[0].Categories.map((el)=>{
+        <Box mt="2%" display={"flex"}><Heading size={"sm"}>Type:</Heading><Text color={"#777777"} fontSize={"14px"}>{obj.Type}</Text></Box>
+        <Box mt="2%" display={"flex"}><Heading size={"sm"}>Brand:</Heading><Text color={"#777777"} fontSize={"14px"}>{obj.Brand}</Text></Box>
+        <Box mt="2%" display={"flex"}><Heading size={"sm"}>Categories:</Heading>{obj.Categories.map((el)=>{
           return(
             <Text color={"#777777"} fontSize={"14px"}>{el}  , </Text>
           )
         })}</Box>
         
-        <Box mt="2%" display={"flex"}><Heading size={"sm"}>Tags:</Heading>{obj[0].Tags.map((el)=>{
+        <Box mt="2%" display={"flex"}><Heading size={"sm"}>Tags:</Heading>{obj.Tags.map((el)=>{
           return(
             <Text color={"#777777"} fontSize={"14px"}>{el}  , </Text>
           )
         })}</Box>
 
-        <Box mt="2%" display={"flex"}><Heading size={"sm"}>SKU:</Heading><Text color={"#777777"} fontSize={"14px"}>{obj[0].SKU}</Text></Box>
-        <Box mt="2%" display={"flex"}><Heading size={"sm"}>Availability:</Heading><Text color={"#777777"} fontSize={"14px"}>{obj[0].Availability} in Stock</Text></Box>
+        <Box mt="2%" display={"flex"}><Heading size={"sm"}>SKU:</Heading><Text color={"#777777"} fontSize={"14px"}>{obj.SKU}</Text></Box>
+        <Box mt="2%" display={"flex"}><Heading size={"sm"}>Availability:</Heading><Text color={"#777777"} fontSize={"14px"}>{obj.Availability} in Stock</Text></Box>
         
-        <Box display={"flex"} mt="2%"><Heading size={"sm"}>Size:</Heading>{obj[0].Size.map((el)=>{
+        <Box display={"flex"} mt="2%"><Heading size={"sm"}>Size:</Heading>{obj.Size.map((el)=>{
           return(
             
               <Text  color={"#777777"} boxShadow={"rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px"}  p="1%" fontSize={"17px"} ml="2%">{el}  </Text>
             
             )
         })}</Box>
-        <Box mt="2%" display={"flex"}><Heading size={"sm"}>Color:</Heading>{obj[0].Color.map((el)=>{
+        <Box mt="2%" display={"flex"}><Heading size={"sm"}>Color:</Heading>{obj.Color.map((el)=>{
           return(
             <Input width={"5%"} h="30px" ml="2%" border="2px solid  blue"   borderRadius={"50%"} bg={el}/>
           )
@@ -149,7 +159,7 @@ const SingleProduct = () => {
         
         <Box mt="3%" display={"flex"}>
           <Box w="20%" display={"flex"} >
-            <AiFillHeart fontSize={"25px"}  className={`${check?(styled.hearticonblack):styled.hearticonred}`} onClick={()=>addwish(obj[0]._id)} />
+            <AiFillHeart fontSize={"25px"}  className={`${check?(styled.hearticonblack):styled.hearticonred}`} onClick={()=>addwish(obj._id)} />
             <Text mt="3%" ml="1%" fontSize={"15px"}  color="#777777">Add to wishlist</Text>
           </Box>
           <Box w="20%" display={"flex"} ml="4%">
@@ -199,7 +209,7 @@ const SingleProduct = () => {
     <Heading>Description</Heading>
     <div className={styled.bottomContainerdes}>
       <div className={styled.bottomdes}>
-      {obj[0].Discription}
+      {obj.Discription}
       </div>
     </div>
 
@@ -209,7 +219,7 @@ const SingleProduct = () => {
         <Heading>Reviews</Heading>
       </div>
       <div>
-      <Accordion   defaultIndex={[0]} allowMultiple w="200%">
+      <Accordion   allowMultiple w="200%">
         <AccordionItem>
           <h2>
             <AccordionButton>
@@ -218,7 +228,7 @@ const SingleProduct = () => {
               <Box> <ReactStars
                   count={5}
                   size={20}
-                  value={obj[0].Rating}
+                  value={obj.Rating}
                   edit={false}
                   activeColor="#ffd700" 
                 />

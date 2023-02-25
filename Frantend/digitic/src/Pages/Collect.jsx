@@ -12,9 +12,9 @@ import {IoReorderFourOutline, IoReorderThreeOutline, IoReorderTwoOutline} from "
 import { useState } from 'react'
 import { useLocation, useNavigate } from 'react-router-dom';
 import DrawerComponent from '../Components/Drawer'
-
+import ProductToggle from '../Components/ProductToggle';
 import { useDispatch, useSelector } from 'react-redux';
-import { Productdata, singledata } from '../Redux/Products/action';
+import { Productdata, singledata, sortasc, sortdesc, sortprice, sorttitleaz, sorttitleza } from '../Redux/Products/action';
 import SingleProduct from './SingleProduct';
 import MainRouter from './MainRouter';
 const Collect = (cat) => {
@@ -24,11 +24,14 @@ const Collect = (cat) => {
   let path=location.pathname.split("/")
   // console.log(path[2],path[1])
   const [check,setcheck]=useState(true)
+  const [filter,setfilter]=useState("")
   const [grid,setgrid]=useState(5)
   const [Shown, setIsShown] = useState("true"); 
+const [gt,setgt]=useState(1)
+const [lt,setlt]=useState(1)
 
   const dispatch=useDispatch()
-  const obj =useSelector((state)=>state.Product.Product)
+  var obj =useSelector((state)=>state.Product.Product)
 // console.log(obj,"obj")
   
 useEffect(()=>{
@@ -50,10 +53,34 @@ useEffect(()=>{
     console.log(check)
   }
     
-   
+  const handlefilter=(e)=>{
+    let val=e.target.value
+    if(val=="Price_l-h"){
+     dispatch(sortasc(path[2]))
+    }
+    if(val=="Price_h-l"){
+     dispatch(sortdesc(path[2]))
+    }
+    if(val=="Alphabetically_A-Z"){
+      dispatch(sorttitleaz(path[2]))
+      
+    }
+    if(val=="Alphabetically_Z-A"){
+      dispatch(sorttitleza(path[2]))
+    }
+    console.log(val,"wor")
+
+  } 
      
 
-  
+  const handleprice=(e)=>{
+    let price=e.target.value
+    console.log(price)
+  }
+
+  useEffect(()=>{
+    dispatch(sortprice(path[2],gt,lt))
+  },[gt,lt])
   
   return (
     <div className={styled.Container}>
@@ -92,8 +119,8 @@ useEffect(()=>{
          </Box>
          <Heading size={"xs"} p="4%">Price</Heading>
          <Box display={"flex"} gap={"1"} >
-            <Box mt={"10px"}><FaDollarSign fontSize={"15px"}  color="#777777"/></Box><Input w="30%" Type={"number"} bg="#f7f7f7" />
-            <Box mt={"10px"}><FaDollarSign fontSize={"15px"}  color="#777777"/></Box><Input w="30%" Type={"number"} bg="#f7f7f7" />
+            <Box mt={"10px"}><FaDollarSign fontSize={"15px"}  color="#777777"/></Box><Input w="30%" Type={"number"} bg="#f7f7f7" onChange={(e)=>setgt(e.target.value)} />
+            <Box mt={"10px"}><FaDollarSign fontSize={"15px"}  color="#777777"/></Box><Input w="30%" Type={"number"} bg="#f7f7f7" onChange={(e)=>setlt(e.target.value)} />
         </Box>
         <Heading size={"xs"} p="4%">Color</Heading>
           <Grid templateColumns={{ xl:"repeat(6, 1fr)" ,md: "repeat(5, 1fr)" }} gap="1" >
@@ -147,7 +174,7 @@ useEffect(()=>{
         <div className={styled.rightfilter}>
           <Box  display={"flex"} gap="2" alignItems={"center"} p="auto">
             <Heading  size={"xs"}  p="1">Sort by:</Heading>
-            <Select className={styled.lefttext} w="70%" fontSize="14px" fontFamily={"sans-serif"} color={"#777777"}  p="1" bg="#f7f7f7">
+            <Select className={styled.lefttext} w="70%" fontSize="14px" fontFamily={"sans-serif"} color={"#777777"}  p="1" bg="#f7f7f7" onClick={handlefilter}>
               <option  value='Feature'>Feature</option>
               <option  value='Bestselling'>Best selling</option>
               <option  value='Alphabetically_A-Z'>Alphabetically,A-Z</option>
@@ -183,37 +210,12 @@ useEffect(()=>{
           {
             obj && obj.map((el,index)=>{
               return(
-                <div className={`${grid==1?(styled.card1):(styled.card)}`} key={el._id} >
-                <Box display={"flex"}  >
-                  <Image w="90%" mt={`${grid==1?"-5%":"10%"}`}    h="250px" src={`${Shown?el.Images[0]:el.Images[1]}`}  onMouseEnter={() => setIsShown(false)} onMouseLeave={() => setIsShown(true)} onClick={()=>single(el)} />                
-                    <Box position={"relative"} zIndex="100" mt={`${grid==1?"-10%":""}`} >
-                      <AiFillHeart fontSize={"25px"}  className={`${check?(styled.hearticonblack):styled.hearticonred}`} onClick={()=>addwish(index)} />
-                      <Box overflow={'hidden'} className={styled.icon}>
-                      <Image src={compare} mt="10px" fontSize={"25px"}  />
-                      <Image src={view} mt="10px" fontSize={"25px"}/>
-                      <Image src={addcart} mt="10px" fontSize={"25px"} />
-                  </Box>
-                  </Box>
-                    
-                </Box>
+                <>
+
+                <ProductToggle el={el} grid={grid} />
                 
-                <div className={styled.card_information__wrapper} >
-                  <div className={styled.card_caption}>{el.Brand}</div>
-                  <div className={styled.card_information__text}>{el.Title}</div>
-                  <ReactStars
-                     count={5}
-                     size={24}
-                     value={el.Rating}
-                     edit={false}
-                     activeColor="#ffd700"
-                    />
-                    <div className={`${grid==1?(styled.card_caption_des):(styled.card_caption_des_none)}`}>{el.Discription}</div>
-                  <Box display={`${grid==1?"none":"flex"}`} >
-                    <Box mt={"5px"}><FaDollarSign fontSize={"15px"}  color="#777777"/></Box>
-                    <div className={styled.price}>{el.Price}</div>
-                  </Box>
-                </div>
-                </div>
+                
+                </>
               )
             }) 
 

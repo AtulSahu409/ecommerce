@@ -3,7 +3,7 @@ import * as types from "./actiontype"
 const initialstate={
     
     Product:[],
-    singledata:[],
+    singledata:{},
     isError:false,
     IsLoading:false,
 };
