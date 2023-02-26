@@ -170,7 +170,8 @@ useEffect(()=>{
           </Box>
         </div>
           <div className={styled.rightfilterbnt}>
-            <DrawerComponent/>
+            
+            <DrawerComponent pa={newpath} />
             
           </div>
           <Box display={"flex"} gap="2" mt="1%" left={"0"} >

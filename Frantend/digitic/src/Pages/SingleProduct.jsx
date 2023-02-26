@@ -6,18 +6,19 @@ import ReactImageZoom from "react-image-zoom";
 import compare from "../Images/prodcompare.svg"
 import ReactStars from 'react-rating-stars-component';
 import { useDispatch, useSelector } from 'react-redux';
-import { useLocation, useParams } from 'react-router-dom';
+import { useLocation, useNavigate, useParams } from 'react-router-dom';
 import { singledata } from '../Redux/Products/action';
 import styled from "../Styles/SingleProduct.module.css";
 import { BsInstagram } from 'react-icons/bs';
 import BreadcrumbCompnent from '../Components/BreadcrumbCompnent';
+import { getadd, postadd } from '../Redux/AddCart/action';
 const SingleProduct = () => {
   const [check,setcheck]=useState(true)
   const [Quantity,setQuantity]=useState(1)
   const {title}=useParams()
   const location=useLocation()
   const dispatch=useDispatch()
-  
+  const navigate=useNavigate()
   const obj =useSelector((state)=>state.Product.singledata) 
   
     
@@ -25,6 +26,19 @@ const SingleProduct = () => {
 
  const [load,setload]=useState(true)
     
+const handleadd=()=>{
+  console.log("post",obj)
+  obj.Quantity=Quantity
+  dispatch(postadd(obj))
+  
+  
+}
+  // useEffect(()=>{
+  
+  // },[obj,dispatch])
+
+
+
    const getdata=()=>{
       dispatch(singledata(title))
       
@@ -158,7 +172,7 @@ let qty=obj?.Availability
         </Grid>
         </Box>
         <Box display={"flex"} mt="3%" gap={"15%"} >
-          <Button  borderRadius={"20px"} color={"white"} bg={"#232F3E"} _hover={{bg:"#FEBD69"}}>ADD TO CART</Button>
+          <Button  borderRadius={"20px"} color={"white"} bg={"#232F3E"} _hover={{bg:"#FEBD69"}} onClick={()=>handleadd(obj)}>ADD TO CART</Button>
           <Button borderRadius={"20px"} color={"white"} bg={"#FEBD69"} _hover={{bg:"#232F3E"}}>Buy it compare</Button>
 
         </Box>

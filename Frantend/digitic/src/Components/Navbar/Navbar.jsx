@@ -10,6 +10,7 @@ import wishlist from "../../Images/wishlist.svg"
 import {Link} from "react-router-dom"
 import React from 'react'
 import styled from "../../Styles/Navbar.module.css"
+import DrawerComponent from '../Drawer'
 const Navbar = () => {
   return (
     <div className={styled.container}>
@@ -68,17 +69,13 @@ const Navbar = () => {
               <Link to="/login"><p className={styled.heading}>Log in<br/>MyAccount</p></Link>
             </div>
             <div className={styled.item}>
+            
              <Link>
-             <div className={styled.Navicon}>
-                <div className={styled.Naviconfrant}>
-                <Image w="45px" src={cart} ml={{lg:"-60%",base:"-15%"}} mt={{base:"-5%",lg:"1%"}} alt="compare"/>
-                </div>
-                <div className={styled.Naviconback}>
-                <Image w="45px" src={cart}  ml={{lg:"45%",base:"70%"}} mt={{base:"-5%",lg:"1%"}} alt="compare"/>
-                </div> 
-              </div>
+              <DrawerComponent cart={cart}/>
              </Link>
-             <p className={styled.heading}>cart</p>
+             <p className={styled.heading}>
+             
+             </p>
             </div>
             
            </div>
