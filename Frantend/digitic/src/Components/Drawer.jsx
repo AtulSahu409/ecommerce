@@ -1,11 +1,13 @@
 import { Box, Button, Drawer, DrawerBody, DrawerCloseButton, DrawerContent, DrawerFooter, DrawerHeader, DrawerOverlay, FormLabel, Heading, Image, Input, InputGroup, InputLeftAddon, InputRightAddon, Select, Stack, Textarea, useDisclosure } from "@chakra-ui/react"
 import React from "react"
+import { useSelector } from "react-redux"
+import {Link} from "react-router-dom"
 // import {GiHamburgerMenu} from "react-icons/gi"
 // import {TbBusinessplan} from "react-icons/tb"
 // import {CgShutterstock} from "react-icons/cg"
 import styled from "../Styles/Navbar.module.css"
 const DrawerComponent= ({cart,pa})=>{
-    const { isOpen, onOpen, onClose } = useDisclosure()
+      const { isOpen, onOpen, onClose } = useDisclosure()
     const firstField = React.useRef()
   
     return (
@@ -46,7 +48,8 @@ const DrawerComponent= ({cart,pa})=>{
                 </Box>
   
                 <Box display={"flex"}>
-                
+               <Link to="/addtocart"> <Button>View Cart</Button></Link>
+                <Link to="/checkout"> <Button>Check Out</Button></Link>
                 </Box>
   
                 <Box>

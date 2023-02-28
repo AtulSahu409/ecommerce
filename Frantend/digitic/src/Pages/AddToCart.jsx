@@ -1,39 +1,79 @@
-import { Table, TableCaption, TableContainer, Tbody, Td, Th, Thead, Tr } from '@chakra-ui/react'
-import React from 'react'
-
+import { Box, Button, Heading, Image, Table, TableCaption, TableContainer, Tbody, Td, Text, Th, Thead, Tr } from '@chakra-ui/react'
+import React, { useEffect } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
+import {getadd} from "../Redux/AddCart/action"
+import {RiDeleteBin6Line} from "react-icons/ri"
+import BreadcrumbCompnent from '../Components/BreadcrumbCompnent'
 const AddToCart = () => {
+  const dispatch=useDispatch()
+  const data=useSelector((state)=>state.Addcart.data)
+  
+  
+  console.log(data)
+  
+  useEffect(()=>{
+    dispatch(getadd)
+  },[])
+
+  
+
+
+
   return (
     <div>
-    <TableContainer>
+    <Box ml="45%" mt="-2%" mb="1%" >
+      <BreadcrumbCompnent pa={"Your Shopping Cart"} />
+    </Box>
+    <TableContainer bgColor={"#f5f5f7"}>
   <Table variant='simple'>
-    <TableCaption>Imperial to metric conversion factors</TableCaption>
+    
     <Thead>
       <Tr>
-        <Th>To convert</Th>
-        <Th>into</Th>
-        <Th isNumeric>multiply by</Th>
+        <Th>PRODUCT</Th>
+        <Th>PRICE</Th>
+        <Th>QUANTITY</Th>
+        <Th>TOTAL</Th>
       </Tr>
     </Thead>
     <Tbody>
-      <Tr>
-        <Td>inches</Td>
-        <Td>millimetres (mm)</Td>
-        <Td isNumeric>25.4</Td>
+    { data && data.map((el)=>{
+      
+      return(
+        <Tr>
+        <Td>
+          <Box display={"flex"} gap={"5"} key={el._id} >
+          <Box><Image w="120px" h="120px" src={el.Images[0]}/></Box>
+          <Box mt="3%">
+            <Text   size={"s"} textOverflow="ellipsis" wordBreak={"break-all"} fontWeight="bold" >{el.Title}</Text>
+            <Text>Size: {el.Size[0]}</Text>
+            <Text>Color: {el.Color[0]}</Text>
+
+          </Box>
+
+          </Box>
+        </Td>
+        <Td>{el.Price}</Td>
+        <Box display={"flex"} m="auto" mt="25%" >
+          <Box><Td>{el.Quantity}</Td></Box>
+          <Box mt="3%" border={"1px solid"} p="3%" borderRadius={"50px"} w="40px" h="40px" bg={"#232F3E"} _hover={{bg:"#FEBD69"}} > <RiDeleteBin6Line color="white" fontSize={"25px"}/> </Box>
+        
+        </Box>
+        <Td>{el.Price*el.Quantity}</Td>
+
       </Tr>
-      <Tr>
-        <Td>feet</Td>
-        <Td>centimetres (cm)</Td>
-        <Td isNumeric>30.48</Td>
-      </Tr>
-      <Tr>
-        <Td>yards</Td>
-        <Td>metres (m)</Td>
-        <Td isNumeric>0.91444</Td>
-      </Tr>
+      )
+    })}
     </Tbody>
     
   </Table>
 </TableContainer>
+<Box display={"flex"} justifyContent={"space-between"}>
+  <Box><Button>Continue</Button></Box>
+  <Box><Text>Sutotal:</Text>
+  <Text>Taxes and shipping calculated at checkout</Text>
+  <Button>Check Out</Button>
+  </Box>
+</Box>
 
     </div>
   )
