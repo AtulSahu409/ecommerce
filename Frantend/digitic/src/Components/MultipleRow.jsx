@@ -2,6 +2,7 @@ import React, { Component, useEffect } from "react";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css"; 
 import "slick-carousel/slick/slick-theme.css";
+
 import Collect from "../Pages/Collect";
 
 import styled from "../Styles/Home.module.css";

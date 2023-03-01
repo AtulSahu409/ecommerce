@@ -6,8 +6,10 @@ import "slick-carousel/slick/slick-theme.css";
 import baner1 from "../Images/main-banner-1.jpg"
 import baner2 from "../Images/main-banner.jpg"
 import styled from "../Styles/Home.module.css";
+import { useDispatch } from "react-redux";
 
 export default class AutoPlay extends Component {
+ 
     render() {
       const settings = {
         dots: false,

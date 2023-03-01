@@ -11,6 +11,7 @@ import SwipeToSlide from "../Components/Slider"
 import ResponsiveSlider from  "../Components/Slider2"
 import  MultiplyRows  from "../Components/MultipleRow"
 import BrandSlider from "../Components/BrandSlider"
+import ShowSlider from '../Components/ShowSlider'
 const Home = () => {
   return (
   <div className={styled.home_container}>
@@ -75,10 +76,15 @@ const Home = () => {
     <MultiplyRows/>
      
   </div>
+  <div className={styled.home_wrapper5}>
+    <ShowSlider/>
+     
+  </div>
   <div className={styled.home_wrapper4}>
     <BrandSlider/>
      
   </div>
+ 
   
 </div>
   </div>

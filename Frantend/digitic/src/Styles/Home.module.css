@@ -29,6 +29,39 @@
     display: flex;
     justify-content: space-around;
 }
+/* .home_wrapper5{
+    padding: 1%;
+    margin: 2% 2%;
+    
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    background-color: white;
+    display: flex;
+    justify-content: space-around;
+} */
+
+.show_image{
+    display: block;
+    position: relative;
+    width: 85%;
+    
+   
+    
+    z-index: 10;
+}
+.show_image img{
+    display: block;
+    border-radius: 15px;
+    overflow-clip-margin: content-box;
+    overflow: clip;
+}
+
+.show_image img:hover{
+    display: block;
+    transition: 300ms;
+    transform: scale(1.04);
+    -webkit-transform: 300ms;
+}
+
 .Brandslider{
     
     width: 100%;
