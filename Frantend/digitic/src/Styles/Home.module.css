@@ -39,6 +39,14 @@
     justify-content: space-around;
 } */
 
+.home_wrapper6{
+    display: flex;
+    
+    width:60%;
+    margin-left: 38%;
+    gap:20px;
+}
+
 .show_image{
     display: block;
     position: relative;
@@ -60,8 +68,58 @@
     transition: 300ms;
     transform: scale(1.04);
     -webkit-transform: 300ms;
+
+}
+.Blogimg img{
+    display: block;
+    position:;
+    border-top-left-radius: 15px;
+    border-top-right-radius: 15px;
+    /* overflow: hidden; */
+    
+}
+.Blogimg img:hover{
+    display:inline-block;
+   
+    transform: scale(1.02);
+    -webkit-transform: 300ms;
+    overflow:hidden;
 }
 
+.BlogsTitle{
+    font-weight: 500;
+    text-transform: capitalize;
+    font-size: 18px;
+    padding-top: 0;
+    color: "Black";
+    line-height: 24px;
+    font-style: normal;
+    letter-spacing: 0;
+    width: 100%;
+    margin: 0 0 10px;
+    font-family: sans-serif;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
+}
+.BlogsDis{
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    color: #777777;
+    font-size: 13px;
+    line-height: 22px;
+    text-transform: capitalize;
+    font-weight: 400;
+    letter-spacing: .3px;
+    padding-right: 0;
+    margin: 0 0 15px;
+
+}
 .Brandslider{
     
     width: 100%;

@@ -47,7 +47,7 @@ const ProductToggle = ({el,grid}) => {
   return (
 
           <div className={`${grid==1?(styled.card1):(styled.card)}`} key={el._id} >
-                <Box display={"flex"}>
+                <Box display={"flex"} >
                   <Image w="90%" mt={`${grid==1?"-5%":"10%"}`}    h="250px" src={`${Shown?el.Images[0]:el.Images[1]}`}  onMouseEnter={() => setIsShown(false)} onMouseLeave={() => setIsShown(true)} onClick={()=>single(el)} />                
                     <Box position={"relative"} zIndex="100" mt={`${grid==1?"-10%":""}`} >
                       <AiFillHeart fontSize={"25px"}  className={`${check?(styled.hearticonblack):styled.hearticonred}`} onClick={addwish} />

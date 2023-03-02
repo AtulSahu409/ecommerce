@@ -137,9 +137,11 @@
 .card{
     display: flex;
     flex-direction: column;
+    background-color:white;
     box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
     border-radius: 3%;
     padding: 8%;
+    margin: 4%;
     height: fit-content;
 }
 .card1{

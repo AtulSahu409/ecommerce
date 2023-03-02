@@ -16,6 +16,7 @@ const SingleProduct = () => {
   const [check,setcheck]=useState(true)
   const [Quantity,setQuantity]=useState(1)
   const {title}=useParams()
+  console.log(title)
   const location=useLocation()
   const dispatch=useDispatch()
   const navigate=useNavigate()
@@ -98,11 +99,11 @@ let qty=obj?.Availability
                 zoomLensStyle:"opacity: 0",
                 zoomPosition:"original",
                 zoomWidth: 600,
-                img:obj?.Images 
+                img:obj?.Images[0] 
                 }} />
             </div>
           </div>
-          <Grid ml="1%"  mr="1%" mt="-10%" gridTemplateColumns={"repeat(2,1fr)"} gap="3">
+          <Grid ml="1%"  mr="1%" mt="5%" gridTemplateColumns={"repeat(2,1fr)"} gap="3">
             <div className={styled.smallimage}><Image src={obj.Images[0]} /></div>
             <div className={styled.smallimage}><Image src={obj.Images[1]} alt="img1" /></div>
             <div className={styled.smallimage}><Image src={obj.Images[2]} alt="img1" /></div>
