@@ -15,7 +15,8 @@ import ProductToggle from "./ProductToggle";
 
 
 
-export default function ProductSlider () {
+export default function ProductSlider ({title}) {
+  console.log(title,"pro")
   
  const dispatch=useDispatch()
 
@@ -23,9 +24,9 @@ export default function ProductSlider () {
 console.log(data,"data")
  
 useEffect(()=>{
-  dispatch(Productdata("Smartwatches"))
+  dispatch(Productdata(title))
 
-},[dispatch])
+},[dispatch,title])
 
 
  

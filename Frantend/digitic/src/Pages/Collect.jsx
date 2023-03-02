@@ -16,8 +16,9 @@ const Collect = (cat) => {
   const navigate=useNavigate()
   const location =useLocation()
   let path=location.pathname.split("/")
+
   let newpath=path[2]
-  console.log(newpath)
+  console.log(newpath,"p2")
   const [check,setcheck]=useState(true)
 
   const [grid,setgrid]=useState(5)
