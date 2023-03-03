@@ -68,10 +68,13 @@ const AddToCart = () => {
   </Table>
 </TableContainer>
 <Box display={"flex"} justifyContent={"space-between"}>
-  <Box><Button>Continue</Button></Box>
-  <Box><Text>Sutotal:</Text>
-  <Text>Taxes and shipping calculated at checkout</Text>
-  <Button>Check Out</Button>
+  <Box mt="5%" ml="4%" w="25%">
+    <Button p="7%" w="45%" borderRadius={"35px"} color={"white"} bg={"#232F3E"} _hover={{bg:"#FEBD69"}}>Continue Shopping</Button>
+  </Box>
+  <Box mt="5%" mr="6%">
+    <Text mb="3%" fontFamily={"sans-serif"} fontWeight={"600"} fontSize="20px" >Sutotal:</Text>
+    <Text fontFamily={"sans-serif"} fontWeight={"600"} fontSize="15px" >Taxes and shipping calculated at checkout</Text>
+  <Button mt="5%" p="9%" w="45%" ml="-1%" borderRadius={"35px"} color={"white"} bg={"#232F3E"} _hover={{bg:"#FEBD69"}} >Check Out</Button>
   </Box>
 </Box>
 
