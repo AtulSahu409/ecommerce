@@ -2,7 +2,8 @@ import { Box, Button, Heading, Input, Text } from '@chakra-ui/react'
 import React from 'react'
 import { Link } from 'react-router-dom'
 
-const InformationForm = () => {
+const InformationForm = ({onClick}) => {
+
   return (
     <Box >
          
@@ -25,7 +26,7 @@ const InformationForm = () => {
                 <Input  p="4%" type={"text"} placeholder="City" />
                 <Input  p="4%" ml="1%" type={"text"} placeholder="Postal code" />
             </Box>
-            <Button bg="#e02020" color={"white"}  type="submit" p="5%" mb="2%" mt="2%" ml="65%" >Continue to Shipping</Button>
+              <Button bg="#e02020" color={"white"}   p="5%" mb="2%" mt="2%" ml="65%" onClick={()=>onClick("InformationForm")} >Continue to Shipping</Button>
             </form>
             </Box>
     </Box>

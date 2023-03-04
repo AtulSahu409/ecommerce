@@ -4,7 +4,7 @@ import React, { useState } from 'react'
 import { AiFillHeart } from 'react-icons/ai'
 import { FaDollarSign } from 'react-icons/fa'
 import addcart from "../Images/add-cart.svg"
-import view from "../Images/view.svg"
+
 import compare from "../Images/prodcompare.svg"
 
 import ReactStars from 'react-rating-stars-component'
@@ -12,6 +12,7 @@ import { useDispatch } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
 import { singledata } from '../Redux/Products/action'
 import { deletewish,postwish } from '../Redux/Wishlist/action'
+import ModalComponent from './ModalComponent'
 
 
 const ProductToggle = ({el,grid}) => {
@@ -53,7 +54,10 @@ const ProductToggle = ({el,grid}) => {
                       <AiFillHeart fontSize={"25px"}  className={`${check?(styled.hearticonblack):styled.hearticonred}`} onClick={addwish} />
                       <Box overflow={'hidden'} className={styled.icon}>
                       <Image src={compare} mt="10px" fontSize={"25px"}  />
-                      <Image src={view} mt="10px" fontSize={"25px"}/>
+                      
+
+                      <ModalComponent el={el}/>
+                      
                       <Image src={addcart} mt="10px" fontSize={"25px"} />
                   </Box>
                   </Box>
