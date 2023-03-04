@@ -1,15 +1,16 @@
 import styled from '../Styles/Collection.module.css'
 import React, { useEffect } from 'react'
-import { Box, Checkbox,  Grid, Heading, Input, Select, Tag, Text } from '@chakra-ui/react'
+import { Box, Checkbox,  color,  Grid, Heading, Input, Select, Tag, Text } from '@chakra-ui/react'
 import {FaDollarSign} from "react-icons/fa"
 import BreadcrumbCompnent from '../Components/BreadcrumbCompnent';
 import {IoReorderFourOutline, IoReorderThreeOutline, IoReorderTwoOutline} from "react-icons/io5"
 import { useState } from 'react'
 import { useLocation, useNavigate } from 'react-router-dom';
-import DrawerComponent from '../Components/Drawer'
+import DrawerComponent from '../Components/Drawer2'
 import ProductToggle from '../Components/ProductToggle';
 import { useDispatch, useSelector } from 'react-redux';
 import { Productdata, singledata, sortasc, sortdesc, sortprice, sorttitleaz, sorttitleza } from '../Redux/Products/action';
+import Categories from '../Components/Filter/Categories';
 
 const Collect = (cat) => {
  
@@ -27,8 +28,10 @@ const [gt,setgt]=useState(1)
 const [lt,setlt]=useState(1000)
 
   const dispatch=useDispatch()
-  var obj =useSelector((state)=>state.Product.Product)
-// console.log(obj,"obj")
+  var obj=useSelector((state)=>state.Product.Product)
+
+ 
+  // console.log(obj[0].Color,"obj")
   
 useEffect(()=>{
    dispatch(Productdata(path[2])) 
@@ -42,6 +45,26 @@ useEffect(()=>{
   
   
   const handle=()=>{}
+
+  const handlecolor=(e)=>{
+    let color=e.target.value
+    for(let i=0;i< obj.length;i++ ){
+      console.log(obj[i].Color,"obj")
+      for(let j=0;j<obj[i].Color.length;j++){
+        // console.log(obj[i].Color[j],"objinsi")
+        if(obj[i].Color[j]==color){
+          console.log(obj[i].Color[j],color)
+          
+
+        }
+
+      }
+
+    }   
+    
+    console.log(color)
+
+  }
   
   const addwish=(index)=>{
     console.log(index)
@@ -83,19 +106,19 @@ useEffect(()=>{
   <div className={styled.Containerbottom}>
       <div className={styled.leftbox}>
         <div className={styled.lefttop}>
-          <Heading size={"sm"} p="4%">Shop By Categories</Heading>
-          <Text className={styled.lefttext} color={"#777777"} fontSize={"12px"} fontWeight={"medium"} pl="5%" >Home</Text>
-          <Text className={styled.lefttext} color={"#777777"} fontSize={"12px"} fontWeight={"medium"} pl="5%" >Our Store</Text>
-          <Text className={styled.lefttext} color={"#777777"} fontSize={"12px"} fontWeight={"medium"} pl="5%" >Blogs</Text>
-          <Text className={styled.lefttext} color={"#777777"} fontSize={"12px"} fontWeight={"medium"} pl="5%" >Contact</Text>
+          
+
+          <Categories/>
 
         </div>
+
+
         <div className={styled.leftmiddle}>
-        <Heading size={"sm"} p="4%">Fiter By</Heading>
-        <Heading size={"xs"} p="4%">Availability</Heading>
-        <Box display={"flex"} flexDirection="column">
+          <Heading size={"sm"} p="4%">Fiter By</Heading>
+          <Heading size={"xs"} p="4%">Availability</Heading>
+          <Box display={"flex"} flexDirection="column">
           <Checkbox size={"sm"} colorScheme='green' onClick={handle} >
-           In stock
+            In stock
           </Checkbox>
           <Checkbox  size={"sm"} colorScheme='green' onClick={handle} >
             Out of stock 
@@ -108,24 +131,24 @@ useEffect(()=>{
         </Box>
         <Heading size={"xs"} p="4%">Color</Heading>
           <Grid templateColumns={{ xl:"repeat(6, 1fr)" ,md: "repeat(5, 1fr)" }} gap="1" >
-            <Input width={"15%"} h="30px" borderRadius={"50%"} bg="#000000"/>
-            <Input width={"15%"} h="30px" borderRadius={"50%"} bg="#0DFDFC"/>
-            <Input width={"15%"} h="30px" borderRadius={"50%"} bg="#11273B"/>
-            <Input width={"15%"} h="30px" borderRadius={"50%"} bg="#293163"/>
-            <Input width={"15%"} h="30px" borderRadius={"50%"} bg="#424448"/>
-            <Input width={"15%"} h="30px" borderRadius={"50%"} bg="#7D2C33"/>
-            <Input width={"15%"} h="30px" borderRadius={"50%"} bg="#948D9A"/>
-            <Input width={"15%"} h="30px" borderRadius={"50%"} bg="#A85A5A"/>
-            <Input width={"15%"} h="30px" borderRadius={"50%"} bg="#ADADAD"/>
-            <Input width={"15%"} h="30px" borderRadius={"50%"} bg="#B5CEDE"/>
-            <Input width={"15%"} h="30px" borderRadius={"50%"} bg="#BAB7BA"/>
-            <Input width={"15%"} h="30px" borderRadius={"50%"} bg="#CCBFAF"/>
-            <Input width={"15%"} h="30px" borderRadius={"50%"} bg="#D7252A"/>
-            <Input width={"15%"} h="30px" borderRadius={"50%"} bg="#E2BFB9"/>
-            <Input width={"15%"} h="30px" borderRadius={"50%"} bg="#E33935"/>
-            <Input width={"15%"} h="30px" borderRadius={"50%"} bg="#E3A4A5"/>
-            <Input width={"15%"} h="30px" borderRadius={"50%"} bg="#F3CBC4"/>
-            <Input width={"15%"} h="30px" borderRadius={"50%"} bg="#FE9377"/>
+            <Input width={"15%"} h="30px" borderRadius={"50%"} value={"#000000"} bg="#000000" onClick={handlecolor}/>
+            <Input width={"15%"} h="30px" borderRadius={"50%"} value={"#0DFDFC"} bg="#0DFDFC" onClick={handlecolor}/>
+            <Input width={"15%"} h="30px" borderRadius={"50%"} value={"#11273B"} bg="#11273B" onClick={handlecolor}/>
+            <Input width={"15%"} h="30px" borderRadius={"50%"} value={"#293163"} bg="#293163" onClick={handlecolor}/>
+            <Input width={"15%"} h="30px" borderRadius={"50%"} value={"#424448"} bg="#424448" onClick={handlecolor}/>
+            <Input width={"15%"} h="30px" borderRadius={"50%"} value={"#7D2C33"} bg="#7D2C33" onClick={handlecolor}/>
+            <Input width={"15%"} h="30px" borderRadius={"50%"} value={"#948D9A"} bg="#948D9A" onClick={handlecolor}/>
+            <Input width={"15%"} h="30px" borderRadius={"50%"} value={"#A85A5A"} bg="#A85A5A" onClick={handlecolor}/>
+            <Input width={"15%"} h="30px" borderRadius={"50%"} value={"#ADADAD"} bg="#ADADAD" onClick={handlecolor}/>
+            <Input width={"15%"} h="30px" borderRadius={"50%"} value={"#B5CEDE"} bg="#B5CEDE" onClick={handlecolor}/>
+            <Input width={"15%"} h="30px" borderRadius={"50%"} value={"#BAB7BA"} bg="#BAB7BA" onClick={handlecolor}/>
+            <Input width={"15%"} h="30px" borderRadius={"50%"} value={"#CCBFAF"} bg="#CCBFAF" onClick={handlecolor}/>
+            <Input width={"15%"} h="30px" borderRadius={"50%"} value={"#D7252A"} bg="#D7252A" onClick={handlecolor}/>
+            <Input width={"15%"} h="30px" borderRadius={"50%"} value={"#E2BFB9"} bg="#E2BFB9" onClick={handlecolor}/>
+            <Input width={"15%"} h="30px" borderRadius={"50%"} value={"#E33935"} bg="#E33935" onClick={handlecolor}/>
+            <Input width={"15%"} h="30px" borderRadius={"50%"} value={"#E3A4A5"} bg="#E3A4A5" onClick={handlecolor}/>
+            <Input width={"15%"} h="30px" borderRadius={"50%"} value={"#F3CBC4"} bg="#F3CBC4" onClick={handlecolor}/>
+            <Input width={"15%"} h="30px" borderRadius={"50%"} value={"#FE9377"} bg="#FE9377" onClick={handlecolor}/>
           </Grid>
           <Heading size={"xs"} p="4%" >Size</Heading>
          <Box display={"flex"}  flexDirection="column" gap={"1"} >

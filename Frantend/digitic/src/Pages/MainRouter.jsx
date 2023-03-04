@@ -8,6 +8,7 @@ import SingleProduct from './SingleProduct'
 import Wishlist from './Wishlist'
 import AddToCart from './AddToCart'
 import CheckOut from './CheckOut'
+import BlogsPage from './BlogsPage'
 const MainRouter = () => {
   
   return (
@@ -20,6 +21,8 @@ const MainRouter = () => {
             <Route path="/wishlist" element={<Wishlist/>}/>
             <Route path="/addtocart" element={<AddToCart/>}/>
             <Route path="/checkout" element={<CheckOut/>}/>
+            <Route path="/blogs" element={<BlogsPage/>}/>
+
         </Routes>
     </Box>
   )

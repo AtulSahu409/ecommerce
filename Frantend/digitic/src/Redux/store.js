@@ -5,12 +5,12 @@ import {reducer as Product} from "./Products/reducer"
 import {reducer as User} from "./UserSignup/reducer"
 import {reducer as Wishlist} from "./Wishlist/reducer"
 import {reducer as Addcart} from "./AddCart/reducer"
-
+import { reducer as Blogs } from "./Blogs/reducer"
 
 
 import thunk from "redux-thunk"
 
-const rootReducer =combineReducers({collection,Product,User,Wishlist,Addcart})
+const rootReducer =combineReducers({collection,Product,User,Wishlist,Addcart,Blogs})
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose
 

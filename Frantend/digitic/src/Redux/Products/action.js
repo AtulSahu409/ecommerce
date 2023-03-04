@@ -17,6 +17,7 @@ const Productdata =(Cat)=>(dispatch)=> {
   
 }
 
+
 const sortasc =(Cat)=>(dispatch)=> {
     dispatch({type:types.GET_Products_REQUEST})
      return axios.get(`http://localhost:3005/product/sort/${Cat}`)

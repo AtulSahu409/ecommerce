@@ -11,7 +11,7 @@ const getadd=(dispatch)=> {
           console.log(r)
           
       })
-      .catch((e) =>{dispatch({type: types.Post_Add_Failure})
+      .catch((e) =>{dispatch({type: types.Get_Add_Failure})
           console.log(e) 
         })
     
