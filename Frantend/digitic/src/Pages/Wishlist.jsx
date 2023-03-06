@@ -16,7 +16,7 @@ const Wishlist = () => {
         
       dispatch(getwish)
 
-    },[])
+    },[dispatch])
       
   return (
     <Box>    
@@ -25,7 +25,7 @@ const Wishlist = () => {
     </Box>
     <Box bgColor={"#f5f5f7"} p="2%">
     <Grid templateColumns={{ xl:"repeat(6, 1fr)" ,md: "repeat(3, 1fr)",sm:"repeat(2, 1fr)" }}  gap="5">
-    { data && data.map((el)=>{
+    { data.length ===0?"ADD in Wishlist" :data.map((el)=>{
         return(
             <WishCart el={el}/>
         )

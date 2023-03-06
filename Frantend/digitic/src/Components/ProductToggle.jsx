@@ -31,16 +31,20 @@ const ProductToggle = ({el,grid}) => {
       const addwish=()=>{
         
         check?setcheck(false):setcheck(true)
+        
         if(check){
+          
           console.log(el._id,"id")
           
-          // dispatch(deletewish(el._id))
+         
           dispatch(postwish(el))
+         
         }
         else if(check==false){
           console.log(el._id)
           
           dispatch(deletewish(el._id))
+          
         }
 
         console.log(check)

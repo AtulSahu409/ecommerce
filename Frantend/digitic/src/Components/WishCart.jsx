@@ -15,11 +15,12 @@ const WishCart = ({el}) => {
    
     dispatch(deletewish(del))
     
-},[del])
+},[del,dispatch])
 
   console.log(el)
   return (
     <div>
+    
         <Box boxShadow={"rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px"}  p="2">
         <RxCross2 fontSize={"25px"} cursor={"pointer"} onClick={()=>setdel(data._id)} />
           <Image src={data.Images[0]} alt="img" />

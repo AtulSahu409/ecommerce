@@ -29,7 +29,45 @@ const reducer=(state=initialstate,action)=>{
             ...state,
             isError:true,
             data:[],
-        };            
+        };
+        // case types.Post_Wish_Request:
+        //     return{
+        //         ...state,
+        //         IsLoading:true,
+        //     };
+    
+        // case types.Post_Wish_Success:
+        //     return{
+        //         ...state,
+        //         IsLoading:false,
+        //         data:payload
+        //     };
+    
+        // case types.Post_Wish_Failure:
+        //     return{
+        //         ...state,
+        //         isError:true,
+        //         data:[],
+        //     };
+            case types.Delete_Wish_Request:
+                return{
+                    ...state,
+                    IsLoading:true,
+                };
+        
+            case types.Delete_Wish_Success:
+                return{
+                    ...state,
+                    IsLoading:false,
+                    data:payload
+                };
+        
+            case types.Delete_Wish_Failure:
+                return{
+                    ...state,
+                    isError:true,
+                    data:[],
+                };                    
         
     default:
     return state
