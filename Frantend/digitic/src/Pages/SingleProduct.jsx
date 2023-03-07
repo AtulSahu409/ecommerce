@@ -99,7 +99,8 @@ let qty=obj?.Availability
                 zoomLensStyle:"opacity: 0",
                 zoomPosition:"original",
                 zoomWidth: 600,
-                img:obj?.Images[0] 
+                zoomStyle:"background-color:white",
+                img:obj?.Images[0], 
                 }} />
             </div>
           </div>
@@ -173,8 +174,8 @@ let qty=obj?.Availability
         </Grid>
         </Box>
         <Box display={"flex"} mt="3%" gap={"15%"} >
-          <Button  borderRadius={"20px"} color={"white"} bg={"#232F3E"} _hover={{bg:"#FEBD69"}} onClick={()=>handleadd(obj)}>ADD TO CART</Button>
-          <Button borderRadius={"20px"} color={"white"} bg={"#FEBD69"} _hover={{bg:"#232F3E"}}>Buy it compare</Button>
+          <Button ml="10%"  borderRadius={"20px"} color={"white"} bg={"#232F3E"} _hover={{bg:"#FEBD69"}} onClick={()=>handleadd(obj)}>ADD TO CART</Button>
+          {/* <Button borderRadius={"20px"} color={"white"} bg={"#FEBD69"} _hover={{bg:"#232F3E"}}>Buy it compare</Button> */}
 
         </Box>
         

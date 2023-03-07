@@ -6,22 +6,34 @@ import { FaDollarSign } from 'react-icons/fa'
 import addcart from "../Images/add-cart.svg"
 
 import compare from "../Images/prodcompare.svg"
-
+import checkimg from "../Images/check.svg"
 import ReactStars from 'react-rating-stars-component'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
 import { singledata } from '../Redux/Products/action'
 import { deletewish,postwish } from '../Redux/Wishlist/action'
 import ModalComponent from './ModalComponent'
+import { deletecompare, postcompare } from '../Redux/Compare/action'
 
 
 const ProductToggle = ({el,grid}) => {
+  const data=useSelector((state)=>state.Wishlist.data)
+  const datacomp=useSelector((state)=>state.Compare.data)
+  console.log(data,"wish",datacomp)
+
     const [Shown, setIsShown] = useState("true");
-    const [check,setcheck]=useState(true)
+    const [check,setcheck]=useState(false)
+    const [comp,setcomp]=useState(false)
+    
     const dispatch=useDispatch()
     const navigate=useNavigate()
     
-    
+    let fav=data.some((e)=>e.Title==el.Title)
+ 
+    let comparedata=datacomp.some((co)=>co.Title===el.Title)
+
+
+    console.log(fav,"fav",comparedata)
     const single=(el)=>{
         dispatch(singledata(el.Title))
         navigate(`/products/${el.Title}`)
@@ -30,9 +42,9 @@ const ProductToggle = ({el,grid}) => {
 
       const addwish=()=>{
         
-        check?setcheck(false):setcheck(true)
+        setcheck(!check)
         
-        if(check){
+        if(!check){
           
           console.log(el._id,"id")
           
@@ -40,7 +52,7 @@ const ProductToggle = ({el,grid}) => {
           dispatch(postwish(el))
          
         }
-        else if(check==false){
+        else if(check){
           console.log(el._id)
           
           dispatch(deletewish(el._id))
@@ -49,20 +61,47 @@ const ProductToggle = ({el,grid}) => {
 
         console.log(check)
       }
+
+      const addcomp=()=>{
+        
+        setcomp(!comp)
+        
+        if(!comp){
+          
+          console.log(el._id,"id")
+          
+         
+          dispatch(postcompare(el))
+         
+        }
+        else if(comp){
+          console.log(el._id)
+          
+          dispatch(deletecompare(el._id))
+          
+        }
+
+        console.log(comp)
+      }
+
+
+
+
+
   return (
 
           <div className={`${grid==1?(styled.card1):(styled.card)}`} key={el._id} >
                 <Box display={"flex"} >
                   <Image w="90%" mt={`${grid==1?"-5%":"10%"}`}    h="250px" src={`${Shown?el.Images[0]:el.Images[1]}`}  onMouseEnter={() => setIsShown(false)} onMouseLeave={() => setIsShown(true)} onClick={()=>single(el)} />                
                     <Box position={"relative"} zIndex="100" mt={`${grid==1?"-10%":""}`} >
-                      <AiFillHeart fontSize={"25px"}  className={`${check?(styled.hearticonblack):styled.hearticonred}`} onClick={addwish} />
+                      <AiFillHeart  fontSize={"25px"}  className={`${ fav || check ?(styled.hearticonred):(styled.hearticonblack)}`} onClick={addwish} />
                       <Box overflow={'hidden'} className={styled.icon}>
-                      <Image src={compare} mt="10px" fontSize={"25px"}  />
+                      <Image src={`${comparedata || comp ?checkimg:compare}`} mt="10px" fontSize={"25px"} _hover={{bgColor:"#ffd700"}} p="5%" ml="-5%" borderRadius={"10px"} onClick={addcomp} />
                       
 
                       <ModalComponent el={el}/>
                       
-                      <Image src={addcart} mt="10px" fontSize={"25px"} />
+                      <Image src={addcart} mt="10px" fontSize={"25px"} _hover={{bgColor:"#ffd700"}} p="5%" ml="-5%" borderRadius={"10px"} />
                   </Box>
                   </Box>
                     

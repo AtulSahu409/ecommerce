@@ -23,7 +23,7 @@ const DrawerComponent= ({cart,pa})=>{
     
     useEffect(()=>{
       dispatch(getadd)
-    },[])
+    },[dispatch])
     
     const handleDel=(id)=>{
   

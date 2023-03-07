@@ -13,6 +13,9 @@ const CheckOut = () => {
     const [arr,setarr]=useState([])
     const [selectedCard, setSelectedCard] = useState(1);
     const data=useSelector((state)=>state.Addcart.data)
+    let sum = data.reduce((a,b)=> a + b.Price*b.Quantity,0)
+    let shipping=17
+    let total=sum+shipping
 console.log(data)
     useEffect(()=>{
         dispatch(getadd)
@@ -61,14 +64,14 @@ console.log(data)
                 data && data.map((el)=>{
                     return(
                         <Box>
-                        <Box display={"flex"}>
-                        <Box><Image w="120px" h="120px" src={el.Images[0]} /></Box>
-                        <Box textAlign={"left"} mt="4%">
-                            <Text fontWeight={"bold"} >{el.Title}</Text>
+                        <Box display={"flex"} justifyContent="space-between" >
+                        <Box><Image w="120px" h="120px" p="2%" borderRadius={"20px"} m="3% 3% 3% 1%" src={el.Images[0]} /></Box>
+                        <Box textAlign={"left"}  mt="4%">
+                            <Text fontWeight={"bold"}  >{el.Title}</Text>
                             <Text>{el.Size[0]}/{el.Color[0]}</Text>
                         </Box>
-                        <Box ml="100px" mt="4%">
-                            <Text fontWeight={"bold"}  >{el.Price}</Text>
+                        <Box  m="3%" mt="4%">
+                            <Text fontWeight={"bold"}    >{el.Price}</Text>
                         </Box>
                             
                         </Box>
@@ -80,10 +83,20 @@ console.log(data)
                 })
             }
             <Divider/>
-            <Box>
-                <Text>Subtotal:</Text>
-                <Text>Subtotal:</Text>
-
+            <Box p="4%" >
+                <Box mb="2%" display={"flex"} justifyContent="space-around">
+                    <Text fontSize={"18px"} fontWeight="600">Subtotal:</Text>
+                    <Text>{sum}</Text>
+                </Box>
+                <Box display={"flex"} justifyContent="space-around">
+                    <Text fontSize={"18px"} fontWeight="600">Shipping:</Text>
+                    <Text>17</Text>
+                </Box>
+            </Box>
+            <Divider/>
+            <Box display={"flex"} justifyContent="space-around">
+                <Text fontSize={"20px"} fontWeight="700">Total</Text>
+                <Text fontSize={"23px"} fontWeight="800" >{total}</Text>
             </Box>
 
             </div>

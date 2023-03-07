@@ -26,12 +26,9 @@ const getwish=(dispatch)=> {
 const postwish=(data)=>(dispatch)=>{
     dispatch({type:types.Post_Wish_Request})
     return axios.post(`http://localhost:3005/wish/newpost/`,data)
-    .then((res)=>{
-        console.log(res)
-       return  dispatch({type:types.Post_Wish_Success,payload:res.data})
-    
-        
-    })
+    .then((res)=>{ dispatch({type:types.Post_Wish_Success})
+    console.log(res)
+})
     .catch((err)=>{dispatch({type:types.Post_Wish_Failure})
         console.log(err)
     })
@@ -42,7 +39,7 @@ const deletewish=(id)=>(dispatch)=>{
     dispatch({type:types.Delete_Wish_Request})
     return axios.delete(`http://localhost:3005/wish/delete/${id}`)
     .then((res)=>{dispatch({type:types.Delete_Wish_Success,payload:res.data})
-    console.log(res)
+    console.log(res.data,res)
     })
     .catch((err)=>{dispatch({type:types.Delete_Wish_Failure})
         console.log(err)

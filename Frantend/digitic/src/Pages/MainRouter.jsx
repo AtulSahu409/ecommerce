@@ -9,6 +9,7 @@ import Wishlist from './Wishlist'
 import AddToCart from './AddToCart'
 import CheckOut from './CheckOut'
 import BlogsPage from './BlogsPage'
+import Compare from './Compare'
 const MainRouter = () => {
   
   return (
@@ -22,6 +23,8 @@ const MainRouter = () => {
             <Route path="/addtocart" element={<AddToCart/>}/>
             <Route path="/checkout" element={<CheckOut/>}/>
             <Route path="/blogs" element={<BlogsPage/>}/>
+            <Route path="/compare" element={<Compare/>}/>
+
 
         </Routes>
     </Box>

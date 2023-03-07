@@ -33,14 +33,16 @@ const Navbar = () => {
            <div className={styled.topnavright}>
             <div className={styled.item}>
               <div className={styled.Navicon}>
+              <Link to="/compare">  
                 <div className={styled.Naviconfrant}>
                 <Image  src={compare} alt="compare"/>
                 </div>
                 <div className={styled.Naviconback}>
                 <Image  src={compare} ml={{lg:"1%", base:"80%"}} mt={{base:"1%"}} alt="compare"/>
                 </div> 
+                </Link>
               </div>
-             <Link><p className={styled.heading}>Compare <br/>Product</p></Link>
+             <Link to="/compare"><p className={styled.heading}>Compare <br/>Product</p></Link>
             </div>
             <div className={styled.item}>
             <div className={styled.Navicon}>

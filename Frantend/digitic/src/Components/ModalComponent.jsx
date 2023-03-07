@@ -1,19 +1,31 @@
-import React from 'react'
+import React, { useState } from 'react'
 import {Box, Button,Heading,Image,Input,Modal,ModalBody,ModalCloseButton,ModalContent,ModalFooter,ModalHeader,ModalOverlay, Select, Text, useDisclosure,} from "@chakra-ui/react"
 import view from "../Images/view.svg"
 import ImageSlider from "./ImageSlider"
 import { Link, useNavigate } from 'react-router-dom'
+import { postadd } from '../Redux/AddCart/action'
+import { useDispatch } from 'react-redux'
 const ModalComponent = ({el}) => {
     console.log(el,"Modale");
     const navigate=useNavigate()
-
+    const dispatch=useDispatch()
+    const [Quantity,setQuantity]=useState(1)
     const handlenext=()=>{
         navigate(`products/${el.Title}`)
     }
   const { isOpen, onOpen, onClose } = useDisclosure()
+
+
+  const handleadd=()=>{
+    console.log("post")
+    el.Quantity=Quantity
+    dispatch(postadd(el))
+  }
+
+  
   return (
     <Box>
-      <Image  src={view} mt="10px" fontSize={"25px"}  onClick={onOpen} />
+      <Image  src={view} mt="10px" fontSize={"25px"} _hover={{bgColor:"#ffd700"}} p="5%" ml="-5%" borderRadius={"10px"}   onClick={onOpen} />
 
       <Modal isOpen={isOpen} size={"5xl"} m="10%"  onClose={onClose} scrollBehavior={"inside"} >
         <ModalOverlay />
@@ -53,10 +65,10 @@ const ModalComponent = ({el}) => {
                 </Box>
                 <Box display={"flex"}>
                     <Text fontFamily={"sans-serif"} fontSize={"20px"} mt="5%" fontWeight={"600"}>Quantity</Text>
-                    <Input type="number"   mt="5%" w="50%" ml="5%" />
+                    <Input type="number" value={Quantity}  mt="5%" w="50%" ml="5%" onChange={(e)=>setQuantity(e.target.value)} />
 
                 </Box>
-                <Button mt="5%" p="2%" w="45%"  borderRadius={"35px"} color={"white"} bg={"#232F3E"} _hover={{bg:"#FEBD69"}} >Add To Cart</Button>
+                <Button mt="5%" p="2%" w="45%"  borderRadius={"35px"} color={"white"} bg={"#232F3E"} _hover={{bg:"#FEBD69"}} onClick={()=>handleadd(el)} >Add To Cart</Button>
             </Box>
           </ModalBody>
 

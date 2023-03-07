@@ -11,16 +11,16 @@ import ProductToggle from '../Components/ProductToggle';
 import { useDispatch, useSelector } from 'react-redux';
 import { Productdata, singledata, sortasc, sortdesc, sortprice, sorttitleaz, sorttitleza } from '../Redux/Products/action';
 import Categories from '../Components/Filter/Categories';
+import { getwish } from '../Redux/Wishlist/action';
 
-const Collect = (cat) => {
+const Collect = () => {
  
-  const navigate=useNavigate()
-  const location =useLocation()
+    const location =useLocation()
   let path=location.pathname.split("/")
 
   let newpath=path[2]
-  console.log(newpath,"p2")
-  const [check,setcheck]=useState(true)
+  // console.log(newpath,"p2")
+  
 
   const [grid,setgrid]=useState(5)
  
@@ -29,19 +29,18 @@ const [lt,setlt]=useState(1000)
 
   const dispatch=useDispatch()
   var obj=useSelector((state)=>state.Product.Product)
+  const {isError,IsLoading}=useSelector((state)=>state.Product)
+  // console.log(isError,IsLoading,"load","col")
 
  
   // console.log(obj[0].Color,"obj")
   
 useEffect(()=>{
-   dispatch(Productdata(path[2])) 
-  },[])
+   dispatch(Productdata(newpath)) 
+   dispatch(getwish)
+  },[dispatch,newpath])
   
-  const single=(el)=>{
-    dispatch(singledata(el.Title))
-    navigate(`/products/${el.Title}`)
-    console.log(el,el._id)
-  }
+  
   
   
   const handle=()=>{}
@@ -49,11 +48,11 @@ useEffect(()=>{
   const handlecolor=(e)=>{
     let color=e.target.value
     for(let i=0;i< obj.length;i++ ){
-      console.log(obj[i].Color,"obj")
+      // console.log(obj[i].Color,"obj")
       for(let j=0;j<obj[i].Color.length;j++){
         // console.log(obj[i].Color[j],"objinsi")
         if(obj[i].Color[j]==color){
-          console.log(obj[i].Color[j],color)
+          // console.log(obj[i].Color[j],color)
           
 
         }
@@ -62,15 +61,11 @@ useEffect(()=>{
 
     }   
     
-    console.log(color)
+    // console.log(color)
 
   }
   
-  const addwish=(index)=>{
-    console.log(index)
-    check?setcheck(false):setcheck(true)
-    console.log(check)
-  }
+
     
   const handlefilter=(e)=>{
     let val=e.target.value
@@ -87,7 +82,7 @@ useEffect(()=>{
     if(val=="Alphabetically_Z-A"){
       dispatch(sorttitleza(path[2]))
     }
-    console.log(val,"wor")
+    // console.log(val,"wor")
 
   } 
      

@@ -2,32 +2,34 @@ import { Box, Grid } from '@chakra-ui/react'
 import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import BreadcrumbCompnent from '../Components/BreadcrumbCompnent'
-import WishCart from '../Components/WishCart'
-import { getwish } from '../Redux/Wishlist/action'
+import CompareCart from '../Components/CompareCart'
+import { getcompare } from '../Redux/Compare/action'
 
-const Wishlist = () => {
+
+const Compare = () => {
 
     const dispatch=useDispatch()
     
-    const data=useSelector((state)=>state.Wishlist.data)
+    const data=useSelector((state)=>state.Compare.data)
     console.log(data);
 
     useEffect(()=>{
         
-      dispatch(getwish)
+      dispatch(getcompare)
 
     },[dispatch])
       
   return (
-    <Box>    
+    <Box> 
+    
     <Box mt="-2%" mb="2%" ml="45%">
-      <BreadcrumbCompnent pa={"wishlist"} />
+      <BreadcrumbCompnent pa={"Compare Product"} />
     </Box>
     <Box bgColor={"#f5f5f7"} p="2%">
     <Grid templateColumns={{ xl:"repeat(6, 1fr)" ,md: "repeat(3, 1fr)",sm:"repeat(2, 1fr)" }}  gap="5">
-    { data.length ===0?"ADD in Wishlist" :data.map((el)=>{
+    { data.length ===0?"ADD to Compare Product" :data.map((el)=>{
         return(
-            <WishCart key={el._id} el={el}/>
+            <CompareCart key={el._id} el={el}/>
         )
     })
 
@@ -41,4 +43,4 @@ const Wishlist = () => {
   )
 }
 
-export default Wishlist
+export default Compare

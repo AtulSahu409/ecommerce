@@ -11,38 +11,34 @@ const reducer=(state=initialstate,action)=>{
     const {type,payload}=action
 
     switch(type){
-    case types.Get_Add_Request:
+    case types.Get_compare_Request:
         return{
             ...state,
             IsLoading:true,
         };
 
-    case types.Get_Add_Success:
+    case types.Get_compare_Success:
         return{
             ...state,
             IsLoading:false,
             data:payload
         };
 
-    case types.Get_Add_Failure:
+    case types.Get_compare_Failure:
         return{
             ...state,
             isError:true,
             data:[],
-        };     
-        
-        case types.Post_Add_Success:
+        };
+     
+        case types.Delete_compare_Success:
             return{
                 ...state,
                 IsLoading:false,
                 data:payload
             };
-        case types.Delete_Add_Success:
-            return{
-                ...state,
-                IsLoading:false,
-                data:payload
-            };
+    
+                           
         
     default:
     return state

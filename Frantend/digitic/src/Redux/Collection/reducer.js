@@ -1,8 +1,8 @@
 import * as types from "./actiontype"
 
 const initialstate={
-    isError:false,
     data:[],
+    isError:false,
     IsLoading:false,
 };
 

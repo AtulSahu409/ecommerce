@@ -11,8 +11,9 @@ const AddToCart = () => {
   console.log(location,"ck")
   
   const data=useSelector((state)=>state.Addcart.data)
-  
-  
+  // console.log(data[0].Price)
+  let sum = data.reduce((a,b)=> a + b.Price*b.Quantity,0)
+
   
   console.log(data)
   
@@ -25,8 +26,7 @@ const AddToCart = () => {
     dispatch(deleteadd(id))
   }
 
-//   let sum=data.reduce((ac,cu) => data.Price + 0)
-// console.log(sum);
+  
 
 
 
@@ -83,7 +83,7 @@ const AddToCart = () => {
   <Link to="/collections/allProducts"> <Button p="7%" w="45%" borderRadius={"35px"} color={"white"} bg={"#232F3E"} _hover={{bg:"#FEBD69"}}>Continue Shopping</Button></Link>
   </Box>
   <Box mt="5%" mr="6%">
-    <Text mb="3%" fontFamily={"sans-serif"} fontWeight={"600"} fontSize="20px" >Sutotal:</Text>
+    <Text mb="3%" fontFamily={"sans-serif"} fontWeight={"600"} fontSize="20px" >Sutotal:{sum}</Text>
     <Text fontFamily={"sans-serif"} fontWeight={"600"} fontSize="15px" >Taxes and shipping calculated at checkout</Text>
   <Link to="/checkout"><Button mt="5%" p="9%" w="45%" ml="-1%" borderRadius={"35px"} color={"white"} bg={"#232F3E"} _hover={{bg:"#FEBD69"}} >Check Out</Button></Link>
   </Box>
