@@ -92,24 +92,35 @@ const Home = () => {
     <ShowSlider/>
      
   </div>
+  <Heading size={"lg"} ml="2%" mt="2%" >Our Popular Products</Heading>
+  <div className={styled.home_wrapper6_Switchbtn_mid}>
+    <Box mt="5%" display={"flex"} cursor={"pointer"} >
+      <Box w="90px" h="100px"><Image mt="7%" w="90px" h="60px" src={watch} bgColor="#f2f2f2" /></Box> 
+      <Box mt="5" onClick={(e)=>settitle("Smartwatches")}><Button  textAlign={"right"} fontWeight={"500"}    > Smartwatch </Button> </Box>
+    </Box>
+    <Box  mt="5%" display={"flex"} cursor={"pointer"} ><Box w="90px" h="100px"><Image mt="7%" w="90px" h="60px" src={Speaker}/></Box> <Box mt="5"onClick={(e)=>settitle("Portable_Speakers")}> <Button textAlign={"right"} fontWeight={"500"}>Speaker</Button> </Box></Box>
+    <Box  mt="5%" display={"flex"} cursor={"pointer"} ><Box w="90px" h="100px"><Image mt="7%" w="90px" h="60px" src={laptop} /></Box> <Box mt="5" onClick={(e)=>settitle("Computers_&_Laptop")} > <Button textAlign={"right"} fontWeight={"500"}>Laptops</Button> </Box></Box>
+  </div>
   <div className={styled.home_wrapper6}>
-  <Box  ml="-60%" p="2%" display={"block"}  bgColor={"white"}  w="100%" h="430px" mt="3%" boxShadow={"rgba(0, 0, 0, 0.24) 0px 3px 8px"}  borderRadius={"10px"} >
+  <div className={styled.home_wrapper6_Switchbtn}   >
     <Box mt="10%" display={"flex"} cursor={"pointer"} >
       <Box w="100px"><Image w="150px" h="100px" src={watch} /></Box> 
       <Box w="100px" m="auto" onClick={(e)=>settitle("Smartwatches")}><Button  textAlign={"right"} fontWeight={"500"}    > Smartwatch </Button> </Box>
     </Box>
     <Box display={"flex"} cursor={"pointer"} ><Box><Image src={Speaker}/></Box> <Box m="auto" onClick={(e)=>settitle("Portable_Speakers")}> <Button textAlign={"right"} fontWeight={"500"}>Speaker</Button> </Box></Box>
     <Box display={"flex"} cursor={"pointer"} ><Box><Image src={laptop} /></Box> <Box m="auto"  onClick={(e)=>settitle("Computers_&_Laptop")} > <Button textAlign={"right"} fontWeight={"500"}>Laptops</Button> </Box></Box>
-  </Box>
-  <Box display={`${title=="Smartwatches"?("block"):("none")}`} ml="1%"  w="100%" mt="3%" h="430px"  >
-    <Image  borderRadius={"10px"} src="https://cdn.shopify.com/s/files/1/0620/5082/8457/files/cat-product-banner.jpg?v=1655367105" w="100%" h="100%"/>
-  </Box>
-  <Box display={`${title=="Portable_Speakers"?("block"):("none")}`} ml="1%"  w="100%" mt="3%" h="430px"  >
-    <Image  borderRadius={"10px"} src="https://cdn.shopify.com/s/files/1/0620/5082/8457/files/cat-product-banner-02.jpg?v=1655700573" w="100%" h="100%"/>
-  </Box>
-  <Box display={`${title=="Computers_&_Laptop"?("block"):("none")}`} ml="1%"  w="100%" mt="3%" h="430px"  >
-    <Image  borderRadius={"10px"} src="https://cdn.shopify.com/s/files/1/0620/5082/8457/files/cat-product-banner-03.jpg?v=1655700560" w="100%" h="100%"/>
-  </Box>
+  </div>
+  <div className={styled.home_wrapper6_bannerImage} mt="2%" display={{lg:"block",md:"block"}} >
+    <Box display={`${title=="Smartwatches"?("block"):("none")}`} ml="1%"  w="100%" mt="3%" h="430px"  >
+      <Image  borderRadius={"10px"} src="https://cdn.shopify.com/s/files/1/0620/5082/8457/files/cat-product-banner.jpg?v=1655367105" w="100%" h="100%"/>
+    </Box>
+    <Box display={`${title=="Portable_Speakers"?("block"):("none")}`} ml="1%"  w="100%" mt="3%" h="430px"  >
+      <Image  borderRadius={"10px"} src="https://cdn.shopify.com/s/files/1/0620/5082/8457/files/cat-product-banner-02.jpg?v=1655700573" w="100%" h="100%"/>
+    </Box>
+    <Box display={`${title=="Computers_&_Laptop"?("block"):("none")}`} ml="1%"  w="100%" mt="3%" h="430px"  >
+      <Image  borderRadius={"10px"} src="https://cdn.shopify.com/s/files/1/0620/5082/8457/files/cat-product-banner-03.jpg?v=1655700560" w="100%" h="100%"/>
+    </Box>
+  </div>
     <ProductSlider title={title}/>
   </div>
   <div className={styled.home_wrapper4}>

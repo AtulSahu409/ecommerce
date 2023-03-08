@@ -61,9 +61,7 @@ var settings = {
   };
     return (
       <Box  w="100%" m="2%" mb="1%"  >
-      {/* <Box >
-        <Box border={"1px solid black"} w="10%"></Box>
-            <Box border={"1px solid black"} w="10%"></Box> */}
+      
         <Box  >
         <Slider {...settings}>
         {
