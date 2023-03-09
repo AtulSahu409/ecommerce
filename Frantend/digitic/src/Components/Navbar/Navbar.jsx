@@ -8,26 +8,41 @@ import cart  from "../../Images/cart.svg"
 import user  from "../../Images/user.svg"
 import wishlist from "../../Images/wishlist.svg"
 import {Link} from "react-router-dom"
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import styled from "../../Styles/Navbar.module.css"
 import DrawerComponent from '../Drawer'
+import { useDispatch, useSelector } from 'react-redux'
+import { Productsearch } from '../../Redux/Products/action'
+import {FaSearch} from "react-icons/fa"
+import { SearchReasultlist } from './SearchReasultlist'
 const Navbar = () => {
+  const [search,setsearch]=useState()
+
+  const dispatch=useDispatch()
+  const data=useSelector((state)=>state.Product.Product)
+  console.log(data,"se")
+  useEffect(()=>{
+    
+    dispatch(Productsearch(search))
+
+  },[dispatch,search])
+
+
+
   return (
     <div className={styled.container}>
         <nav className={styled.topnav}>
           <Link  to="/"> <Text>logo</Text></Link>
-           <div className={styled.inputtop}>           
-           <InputGroup  bg={"white"} color="black" w="350px" h={"10%"}>
-            <InputLeftElement
-              pointerEvents='none'
-              color='gray.300'
-              fontSize='1.2em'
-              
-            />
-            <Input  placeholder='Search Product here..' />
-            <InputRightElement bg="yellow" children={<Search2Icon fontSize={"2xl"} color='green.500' />}  />
-
-            </InputGroup>
+          
+           <div className={styled.inputtop} >           
+          
+              <FaSearch className={styled.search_icon} />
+              <input
+                placeholder="Type to search..."
+                value={search}
+                onChange={(e) => setsearch(e.target.value)}
+              />
+          { <SearchReasultlist results={data} />}
             </div>
 
            <div className={styled.topnavright}>

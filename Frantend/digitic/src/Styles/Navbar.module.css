@@ -43,9 +43,9 @@
 .inputbottom{
     display: none;
 }
-.inputtop{
+/* .inputtop{
     display: block;
-}
+} */
 .Navicon {
     position: relative;
     width:100%;
@@ -88,6 +88,64 @@ color: white;
     margin-left: -45%;
     
 }
+
+.inputtop {
+    width: 25%;
+    height: 2.5rem;
+    border: none;
+    border-radius: 10px;
+    padding: 0 15px;
+    box-shadow: 0px 0px 8px #ddd;
+    background-color: white;
+    color: black;
+    display: flex;
+    align-items: center;
+  }
+  
+  input {
+    background-color: transparent;
+    border: none;
+    height: 100%;
+    font-size: 1.25rem;
+    width: 100%;
+    margin-left: 5px;
+  }
+  
+  input:focus {
+    outline: none;
+  }
+  
+  .search_icon {
+    color: royalblue;
+    font-size: 25px;
+    margin: 2%;
+  }
+
+  .results_list {
+    width: 100%;
+    /* margin-top: 15%; */
+    z-index: 101;
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0px 0px 8px #ddd;
+    border-radius: 10px;
+    margin-top: 16rem;
+    max-height: 200px;
+    margin-left: -110%;
+    overflow-y: auto;
+  }
+
+
+
+  .search_result {
+    padding: 10px 20px;
+  }
+  
+  .search_result:hover {
+    background-color: #efefef;
+  }
+
 @media screen and (max-width: 984px){
     .heading{
         display: none;
