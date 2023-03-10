@@ -19,7 +19,7 @@ const Navbar = () => {
   const [search,setsearch]=useState()
 
   const dispatch=useDispatch()
-  const data=useSelector((state)=>state.Product.Product)
+  const data=useSelector((state)=>state.Product.Pro)
   console.log(data,"se")
   useEffect(()=>{
     
@@ -50,10 +50,10 @@ const Navbar = () => {
               <div className={styled.Navicon}>
               <Link to="/compare">  
                 <div className={styled.Naviconfrant}>
-                <Image  src={compare} alt="compare"/>
+                <Image  src={compare}  ml={{base:"-4%",lg:"6%"}} mt={{base:"1%"}} alt="compare"/>
                 </div>
                 <div className={styled.Naviconback}>
-                <Image  src={compare} ml={{lg:"1%", base:"80%"}} mt={{base:"1%"}} alt="compare"/>
+                <Image  src={compare} ml={{lg:"-1%", base:"-10%"}} mt={{base:"1%"}} alt="compare"/>
                 </div> 
                 </Link>
               </div>
@@ -63,10 +63,10 @@ const Navbar = () => {
             <div className={styled.Navicon}>
             <Link to="/wishlist">    
             <div className={styled.Naviconfrant}>
-                <Image src={wishlist} alt="compare"/>
+                <Image src={wishlist} ml={{base:"-1%",lg:"4%"}} mt={{base:"1%"}} alt="compare"/>
                 </div>
                 <div className={styled.Naviconback}>
-                <Image src={wishlist} ml={{lg:"1%",base:"80%"}} mt={{base:"1%"}} alt="compare"/>
+                <Image src={wishlist} ml={{lg:"1%",base:"10px"}} mt={{base:"1%"}} alt="compare"/>
                 </div>
               </Link> 
               </div>
@@ -90,9 +90,7 @@ const Navbar = () => {
              <Link>
               <DrawerComponent cart={cart}/>
              </Link>
-             <p className={styled.heading}>
              
-             </p>
             </div>
             
            </div>

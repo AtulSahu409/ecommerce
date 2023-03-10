@@ -2,15 +2,15 @@ import * as types from "./actiontype"
 import axios from "axios"
 
 const Productsearch =(Cat)=>(dispatch)=> {
-    dispatch({type:types.GET_Products_REQUEST})
+    dispatch({type:types.GET_Pro_REQUEST})
      return axios.get(`http://localhost:3005/product/all/${Cat}`)
      .then((r) => {
-         dispatch({type:types.GET_Products_SUCCESS, payload:r.data})
+         dispatch({type:types.GET_Pro_SUCCESS, payload:r.data})
          console.log(r.data,"search")
          
      })
-     .catch((e) =>{dispatch({type: types.GET_Products_FAILURE})
-         console.log(e) 
+     .catch((e) =>{dispatch({type: types.GET_Pro_FAILURE})
+           console.log(e) 
        })
    
      

@@ -12,7 +12,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Productdata, singledata, sortasc, sortdesc, sortprice, sorttitleaz, sorttitleza } from '../Redux/Products/action';
 import Categories from '../Components/Filter/Categories';
 import { getwish } from '../Redux/Wishlist/action';
-
+import * as types from "../Redux/Products/actiontype"
 const Collect = () => {
  
     const location =useLocation()
@@ -29,6 +29,9 @@ const [lt,setlt]=useState(1000)
 
   const dispatch=useDispatch()
   var obj=useSelector((state)=>state.Product.Product)
+  // const [newdata,setdata]=useState(obj)
+  
+  
   const {isError,IsLoading}=useSelector((state)=>state.Product)
   // console.log(isError,IsLoading,"load","col")
 
@@ -36,7 +39,8 @@ const [lt,setlt]=useState(1000)
   // console.log(obj[0].Color,"obj")
   
 useEffect(()=>{
-   dispatch(Productdata(newpath)) 
+  dispatch(Productdata(newpath))
+    
    dispatch(getwish)
   },[dispatch,newpath])
   
@@ -47,12 +51,14 @@ useEffect(()=>{
 
   const handlecolor=(e)=>{
     let color=e.target.value
+    let update=[]
     for(let i=0;i< obj.length;i++ ){
       // console.log(obj[i].Color,"obj")
       for(let j=0;j<obj[i].Color.length;j++){
         // console.log(obj[i].Color[j],"objinsi")
-        if(obj[i].Color[j]==color){
-          // console.log(obj[i].Color[j],color)
+        if(obj[i].Color[j]===color){
+          // console.log(obj[i].Color[j],color,obj[i])
+          update.push(obj[i])
           
 
         }
@@ -62,8 +68,9 @@ useEffect(()=>{
     }   
     
     // console.log(color)
-
+    dispatch({type:types.GET_Products_SUCCESS,update})
   }
+  
   
 
     
@@ -126,24 +133,24 @@ useEffect(()=>{
         </Box>
         <Heading size={"xs"} p="4%">Color</Heading>
           <Grid templateColumns={{ xl:"repeat(6, 1fr)" ,md: "repeat(5, 1fr)" }} gap="1" >
-            <Input width={"15%"} h="30px" borderRadius={"50%"} value={"#000000"} bg="#000000" onClick={handlecolor}/>
-            <Input width={"15%"} h="30px" borderRadius={"50%"} value={"#0DFDFC"} bg="#0DFDFC" onClick={handlecolor}/>
-            <Input width={"15%"} h="30px" borderRadius={"50%"} value={"#11273B"} bg="#11273B" onClick={handlecolor}/>
-            <Input width={"15%"} h="30px" borderRadius={"50%"} value={"#293163"} bg="#293163" onClick={handlecolor}/>
-            <Input width={"15%"} h="30px" borderRadius={"50%"} value={"#424448"} bg="#424448" onClick={handlecolor}/>
-            <Input width={"15%"} h="30px" borderRadius={"50%"} value={"#7D2C33"} bg="#7D2C33" onClick={handlecolor}/>
-            <Input width={"15%"} h="30px" borderRadius={"50%"} value={"#948D9A"} bg="#948D9A" onClick={handlecolor}/>
-            <Input width={"15%"} h="30px" borderRadius={"50%"} value={"#A85A5A"} bg="#A85A5A" onClick={handlecolor}/>
-            <Input width={"15%"} h="30px" borderRadius={"50%"} value={"#ADADAD"} bg="#ADADAD" onClick={handlecolor}/>
-            <Input width={"15%"} h="30px" borderRadius={"50%"} value={"#B5CEDE"} bg="#B5CEDE" onClick={handlecolor}/>
-            <Input width={"15%"} h="30px" borderRadius={"50%"} value={"#BAB7BA"} bg="#BAB7BA" onClick={handlecolor}/>
-            <Input width={"15%"} h="30px" borderRadius={"50%"} value={"#CCBFAF"} bg="#CCBFAF" onClick={handlecolor}/>
-            <Input width={"15%"} h="30px" borderRadius={"50%"} value={"#D7252A"} bg="#D7252A" onClick={handlecolor}/>
-            <Input width={"15%"} h="30px" borderRadius={"50%"} value={"#E2BFB9"} bg="#E2BFB9" onClick={handlecolor}/>
-            <Input width={"15%"} h="30px" borderRadius={"50%"} value={"#E33935"} bg="#E33935" onClick={handlecolor}/>
-            <Input width={"15%"} h="30px" borderRadius={"50%"} value={"#E3A4A5"} bg="#E3A4A5" onClick={handlecolor}/>
-            <Input width={"15%"} h="30px" borderRadius={"50%"} value={"#F3CBC4"} bg="#F3CBC4" onClick={handlecolor}/>
-            <Input width={"15%"} h="30px" borderRadius={"50%"} value={"#FE9377"} bg="#FE9377" onClick={handlecolor}/>
+            <Input width={"15%"} h="30px" borderRadius={"50%"} value={"#000000"} bg="#000000" onClick={(e)=>handlecolor(e)}/>
+            <Input width={"15%"} h="30px" borderRadius={"50%"} value={"#0DFDFC"} bg="#0DFDFC" onClick={(e)=>handlecolor(e)}/>
+            <Input width={"15%"} h="30px" borderRadius={"50%"} value={"#11273B"} bg="#11273B" onClick={(e)=>handlecolor(e)}/>
+            <Input width={"15%"} h="30px" borderRadius={"50%"} value={"#293163"} bg="#293163" onClick={(e)=>handlecolor(e)}/>
+            <Input width={"15%"} h="30px" borderRadius={"50%"} value={"#424448"} bg="#424448" onClick={(e)=>handlecolor(e)}/>
+            <Input width={"15%"} h="30px" borderRadius={"50%"} value={"#7D2C33"} bg="#7D2C33" onClick={(e)=>handlecolor(e)}/>
+            <Input width={"15%"} h="30px" borderRadius={"50%"} value={"#948D9A"} bg="#948D9A" onClick={(e)=>handlecolor(e)}/>
+            <Input width={"15%"} h="30px" borderRadius={"50%"} value={"#A85A5A"} bg="#A85A5A" onClick={(e)=>handlecolor(e)}/>
+            <Input width={"15%"} h="30px" borderRadius={"50%"} value={"#ADADAD"} bg="#ADADAD" onClick={(e)=>handlecolor(e)}/>
+            <Input width={"15%"} h="30px" borderRadius={"50%"} value={"#B5CEDE"} bg="#B5CEDE" onClick={(e)=>handlecolor(e)}/>
+            <Input width={"15%"} h="30px" borderRadius={"50%"} value={"#BAB7BA"} bg="#BAB7BA" onClick={(e)=>handlecolor(e)}/>
+            <Input width={"15%"} h="30px" borderRadius={"50%"} value={"#CCBFAF"} bg="#CCBFAF" onClick={(e)=>handlecolor(e)}/>
+            <Input width={"15%"} h="30px" borderRadius={"50%"} value={"#D7252A"} bg="#D7252A" onClick={(e)=>handlecolor(e)}/>
+            <Input width={"15%"} h="30px" borderRadius={"50%"} value={"#E2BFB9"} bg="#E2BFB9" onClick={(e)=>handlecolor(e)}/>
+            <Input width={"15%"} h="30px" borderRadius={"50%"} value={"#E33935"} bg="#E33935" onClick={(e)=>handlecolor(e)}/>
+            <Input width={"15%"} h="30px" borderRadius={"50%"} value={"#E3A4A5"} bg="#E3A4A5" onClick={(e)=>handlecolor(e)}/>
+            <Input width={"15%"} h="30px" borderRadius={"50%"} value={"#F3CBC4"} bg="#F3CBC4" onClick={(e)=>handlecolor(e)}/>
+            <Input width={"15%"} h="30px" borderRadius={"50%"} value={"#FE9377"} bg="#FE9377" onClick={(e)=>handlecolor(e)}/>
           </Grid>
           <Heading size={"xs"} p="4%" >Size</Heading>
          <Box display={"flex"}  flexDirection="column" gap={"1"} >

@@ -1,5 +1,6 @@
-import { Box, Button, Drawer, DrawerBody, DrawerCloseButton, DrawerContent, DrawerFooter, DrawerHeader, DrawerOverlay, FormLabel, Heading, Image, Input, InputGroup, InputLeftAddon, InputRightAddon, Select, Stack, Text, Textarea, useDisclosure } from "@chakra-ui/react"
+import { AvatarBadge, Badge, Box, Button, Drawer, DrawerBody, DrawerCloseButton, DrawerContent, DrawerFooter, DrawerHeader, DrawerOverlay, FormLabel, Heading, IconButton, Image, Input, InputGroup, InputLeftAddon, InputRightAddon, Select, Stack, Text, Textarea, useDisclosure } from "@chakra-ui/react"
 import React, { useEffect } from "react"
+import { FaShoppingCart } from "react-icons/fa"
 import { RiDeleteBin6Line } from "react-icons/ri"
 import { useDispatch, useSelector } from "react-redux"
 import {Link, useLocation} from "react-router-dom"
@@ -19,7 +20,10 @@ const DrawerComponent= ({cart,pa})=>{
     
     
     
-    console.log(data)
+    console.log(data,"cart")
+
+
+    
     
     useEffect(()=>{
       dispatch(getadd)
@@ -35,12 +39,31 @@ const DrawerComponent= ({cart,pa})=>{
         <Button colorScheme=''m="auto"  onClick={onOpen}>
           <div className={styled.Navicon}>
                   <div className={styled.Naviconfrant}>
-                  <Image w="45px" src={cart} ml={{lg:"-60%",base:"-15%"}} mt={{base:"-5%",lg:"1%"}} alt="compare"/>
+                  <Image w="42px" src={cart} ml={{base:"-50%",lg:"-45%"}} mt={{base:"-3%" }} alt="compare"/>
                   </div>
                   <div className={styled.Naviconback}>
-                  <Image w="45px" src={cart}  ml={{lg:"45%",base:"70%"}} mt={{base:"-5%",lg:"1%"}} alt="compare"/>
+                  <Image w="42px" src={cart}  ml={{lg:"30%", base:"40%"}} mt={{base:"-3%"}} alt="compare"/>
                   </div> 
+               
           </div>
+          <p className={styled.heading}>
+          {data.length > 0 && (
+          <Badge
+            borderRadius="full"
+            variant="solid"
+            colorScheme="red"
+            position="absolute"
+            top="-1"
+            right="5"
+            w="17px"
+            h="17px"
+          >
+            {data.reduce((a,b)=>a+ b.Quantity,0)}
+          </Badge>
+      )}
+        
+ 
+          </p>
        
          
           
@@ -94,13 +117,13 @@ const DrawerComponent= ({cart,pa})=>{
                 <Link to="/checkout"> <Button ml="145%" p="33%" borderRadius={"35px"} color={"white"} bg={"#232F3E"} _hover={{bg:"#FEBD69"}}>Check Out</Button></Link>
                 </Box>
   
-                <Box>
+                {/* <Box>
                   
                 </Box>
   
                 <Box>
                   
-                </Box>
+                </Box> */}
               </Stack>
             </DrawerBody>
   

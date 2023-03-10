@@ -4,6 +4,7 @@ const initialstate={
     
     Product:[],
     singledata:{},
+    Pro:[],
     isError:false,
     IsLoading:false,
 };
@@ -30,6 +31,26 @@ switch(type){
             isError:true,
             Product:[],
         };            
+
+        case types.GET_Pro_REQUEST:
+        return{
+            ...state,
+            IsLoading:true,
+        };
+
+    case types.GET_Pro_SUCCESS:
+        return{
+            ...state,
+            IsLoading:false,
+            Pro:payload
+        };
+
+    case types.GET_Pro_FAILURE:
+        return{
+            ...state,
+            isError:true,
+            Pro:[],
+        };
         case types.GET_single_REQUEST:
         return{
             ...state,
