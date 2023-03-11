@@ -48,6 +48,7 @@ const DrawerComponent= ({cart,pa})=>{
           </div>
           <p className={styled.heading}>
           {data.length > 0 && (
+            <>
           <Badge
             borderRadius="full"
             variant="solid"
@@ -60,6 +61,10 @@ const DrawerComponent= ({cart,pa})=>{
           >
             {data.reduce((a,b)=>a+ b.Quantity,0)}
           </Badge>
+          <Text position="absolute"
+            top="4"
+            right="-4">{data.reduce((a,b)=> a + b.Price*b.Quantity,0)}</Text>
+          </>
       )}
         
  

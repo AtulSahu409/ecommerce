@@ -29,23 +29,26 @@ const [lt,setlt]=useState(1000)
 
   const dispatch=useDispatch()
   var obj=useSelector((state)=>state.Product.Product)
-  // const [newdata,setdata]=useState(obj)
+  const [newdata,setdata]=useState(obj)
   
   
   const {isError,IsLoading}=useSelector((state)=>state.Product)
-  // console.log(isError,IsLoading,"load","col")
+  console.log(isError,IsLoading,"load","col")
 
  
   // console.log(obj[0].Color,"obj")
   
 useEffect(()=>{
-  dispatch(Productdata(newpath))
+  
+    dispatch(Productdata(newpath))
     
    dispatch(getwish)
   },[dispatch,newpath])
   
   
-  
+useEffect(()=>{
+  setdata(obj)
+},[obj])  
   
   const handle=()=>{}
 
@@ -66,9 +69,8 @@ useEffect(()=>{
       }
 
     }   
-    
-    // console.log(color)
-    dispatch({type:types.GET_Products_SUCCESS,update})
+    setdata(update)
+  
   }
   
   
@@ -217,8 +219,8 @@ useEffect(()=>{
           </Box>
         </div>
         <div className={`${grid==1?(styled.rightbottombox_1):grid==2?(styled.rightbottombox_2):grid==3?(styled.rightbottombox_3):(styled.rightbottombox)}`}>
-          {
-            obj && obj.map((el,index)=>{
+          {IsLoading?"loading":
+            newdata && newdata.map((el,index)=>{
               return(
                 <>
 
