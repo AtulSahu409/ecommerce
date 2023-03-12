@@ -1,4 +1,4 @@
-import { Box, Breadcrumb, BreadcrumbItem, BreadcrumbLink, Button, Checkbox,  Grid, Heading, Image, Input, Select, Tag, Text } from '@chakra-ui/react'
+import { Box, Breadcrumb, BreadcrumbItem, BreadcrumbLink, Button, Checkbox,  Grid, Heading, Image, Input, Select, Tag, Text, Toast, useToast } from '@chakra-ui/react'
 import styled from "../Styles/Collection.module.css"
 import React, { useState } from 'react'
 import { AiFillHeart } from 'react-icons/ai'
@@ -16,6 +16,7 @@ import ModalComponent from './ModalComponent'
 import { deletecompare, postcompare } from '../Redux/Compare/action'
 
 
+
 const ProductToggle = ({el,grid}) => {
   const data=useSelector((state)=>state.Wishlist.data)
   const datacomp=useSelector((state)=>state.Compare.data)
@@ -24,7 +25,7 @@ const ProductToggle = ({el,grid}) => {
     const [Shown, setIsShown] = useState("true");
     const [check,setcheck]=useState(false)
     const [comp,setcomp]=useState(false)
-    
+    const toast =useToast()
     const dispatch=useDispatch()
     const navigate=useNavigate()
     
@@ -45,22 +46,34 @@ const ProductToggle = ({el,grid}) => {
         setcheck(!check)
         
         if(!check){
-          
-          console.log(el._id,"id")
-          
-         
-          dispatch(postwish(el))
+          dispatch(postwish(el));
+          toast({
+            title:'Item Add in Wishlist',
+            position:"top",
+            status: 'success',
+            duration: 2000,
+            isClosable: true,
+          })
          
         }
         else if(check){
-          console.log(el._id)
+          
           
           dispatch(deletewish(el._id))
+          toast({
+            title:'Item Remove from Wishlist',
+            position:"top",
+            status: 'success',
+            duration: 2000,
+            isClosable: true,
+          })
           
         }
 
         console.log(check)
       }
+
+
 
       const addcomp=()=>{
         
@@ -68,16 +81,30 @@ const ProductToggle = ({el,grid}) => {
         
         if(!comp){
           
-          console.log(el._id,"id")
+          
           
          
           dispatch(postcompare(el))
-         
+          toast({
+            title:'Item Add in Comparelist',
+            position:"top",
+            status: 'success',
+            duration: 2000,
+            isClosable: true,
+          })
+          
         }
         else if(comp){
-          console.log(el._id)
+          
           
           dispatch(deletecompare(el._id))
+          toast({
+            title:'Item Remove from Comparelist',
+            position:"top",
+            status: 'success',
+            duration: 2000,
+            isClosable: true,
+          })
           
         }
 

@@ -1,4 +1,4 @@
-import { Box, Button, Heading, Image, Table, TableCaption, TableContainer, Tbody, Td, Text, Th, Thead, Tr } from '@chakra-ui/react'
+import { Box, Button, Heading, Image, Table, TableCaption, TableContainer, Tbody, Td, Text, Th, Thead, Tr, useToast } from '@chakra-ui/react'
 import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import {deleteadd, getadd} from "../Redux/AddCart/action"
@@ -8,6 +8,7 @@ import { Link, useLocation } from 'react-router-dom'
 const AddToCart = () => {
   const dispatch=useDispatch()
   const location=useLocation()
+  const toast=useToast()
   console.log(location,"ck")
   
   const data=useSelector((state)=>state.Addcart.data)
@@ -24,6 +25,13 @@ const AddToCart = () => {
   const handleDel=(id)=>{
   
     dispatch(deleteadd(id))
+    toast({
+      title:'Item Deleted Successfully',
+      position:"top",
+      status: 'warning',
+      duration: 2000,
+      isClosable: true,
+    })
   }
 
   

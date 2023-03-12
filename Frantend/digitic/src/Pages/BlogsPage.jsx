@@ -26,7 +26,7 @@ const BlogsPage = () => {
               </div>
             </div>
             <div className={styled.LeftContainer}>
-              <div>
+              
               { data && data.map((el)=>{
                 return(
                   <BlogCard el={el} />
@@ -37,7 +37,7 @@ const BlogsPage = () => {
 
                
 
-              </div>
+              
 
             </div>
 

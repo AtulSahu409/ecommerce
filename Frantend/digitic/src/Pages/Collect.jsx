@@ -1,19 +1,22 @@
 import styled from '../Styles/Collection.module.css'
 import React, { useEffect } from 'react'
-import { Box, Checkbox,  color,  Grid, Heading, Input, Select, Tag, Text } from '@chakra-ui/react'
+import { Box, Button, Checkbox,  color,  Grid, Heading, Input, Select, Tag, Text } from '@chakra-ui/react'
 import {FaDollarSign} from "react-icons/fa"
 import BreadcrumbCompnent from '../Components/BreadcrumbCompnent';
 import {IoReorderFourOutline, IoReorderThreeOutline, IoReorderTwoOutline} from "react-icons/io5"
 import { useState } from 'react'
-import { useLocation, useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate, useSearchParams } from 'react-router-dom';
 import DrawerComponent from '../Components/Drawer2'
 import ProductToggle from '../Components/ProductToggle';
 import { useDispatch, useSelector } from 'react-redux';
 import { Productdata, singledata, sortasc, sortdesc, sortprice, sorttitleaz, sorttitleza } from '../Redux/Products/action';
 import Categories from '../Components/Filter/Categories';
 import { getwish } from '../Redux/Wishlist/action';
-import * as types from "../Redux/Products/actiontype"
+
 const Collect = () => {
+  const dispatch=useDispatch()
+  var obj=useSelector((state)=>state.Product.Product)
+  const [newdata,setdata]=useState(obj)
  
     const location =useLocation()
   let path=location.pathname.split("/")
@@ -26,17 +29,68 @@ const Collect = () => {
  
 const [gt,setgt]=useState(1)
 const [lt,setlt]=useState(1000)
+// const [searchParams,setsearchParams]=useSearchParams();
+const [category,setcategory]=useState([])
 
-  const dispatch=useDispatch()
-  var obj=useSelector((state)=>state.Product.Product)
-  const [newdata,setdata]=useState(obj)
+const handleFilter=(e)=>{
+  
+
+  const option=e.target.value;
+  let newcategory=[...category];
+  if(newcategory.includes(option)){
+    newcategory.splice(newcategory.indexOf(option),1)
+  }
+  else{
+    newcategory.push(option)
+    // setcategory(newcategory)
+  }
+  setcategory(newcategory)
+  
+  console.log(category,"size",newcategory)
+  const update=obj.filter(a=>{
+    let found=false
+    a.Size.forEach(s=>{
+      if(newcategory.includes(s)){
+        found=true
+      }
+
+    })
+    
+    return found
+  })
+  
+  console.log(update,"sizxxx")
+  console.log(newcategory,newcategory.length)
+  if(newcategory.length===0){
+
+    console.log(newcategory.length,obj,".......")
+    setdata(obj)
+  }
+  else{
+    console.log(newcategory.length,obj,".......else")
+    setdata(update)
+  }
+  
+  console.log(category.every(s=>s));
+}
+
+
+  
+
+
   
   
   const {isError,IsLoading}=useSelector((state)=>state.Product)
-  console.log(isError,IsLoading,"load","col")
+  // console.log(isError,IsLoading,"load","col")
 
- 
-  // console.log(obj[0].Color,"obj")
+// useEffect(()=>{
+//   for(let i=0;i< obj.length;i++ ){
+//     // if(obj[i])
+//   }
+
+// },[category])
+
+// console.log(obj[0].Color,"obj")
   
 useEffect(()=>{
   
@@ -135,32 +189,32 @@ useEffect(()=>{
         </Box>
         <Heading size={"xs"} p="4%">Color</Heading>
           <Grid templateColumns={{ xl:"repeat(6, 1fr)" ,md: "repeat(5, 1fr)" }} gap="1" >
-            <Input width={"15%"} h="30px" borderRadius={"50%"} value={"#000000"} bg="#000000" onClick={(e)=>handlecolor(e)}/>
-            <Input width={"15%"} h="30px" borderRadius={"50%"} value={"#0DFDFC"} bg="#0DFDFC" onClick={(e)=>handlecolor(e)}/>
-            <Input width={"15%"} h="30px" borderRadius={"50%"} value={"#11273B"} bg="#11273B" onClick={(e)=>handlecolor(e)}/>
-            <Input width={"15%"} h="30px" borderRadius={"50%"} value={"#293163"} bg="#293163" onClick={(e)=>handlecolor(e)}/>
-            <Input width={"15%"} h="30px" borderRadius={"50%"} value={"#424448"} bg="#424448" onClick={(e)=>handlecolor(e)}/>
-            <Input width={"15%"} h="30px" borderRadius={"50%"} value={"#7D2C33"} bg="#7D2C33" onClick={(e)=>handlecolor(e)}/>
-            <Input width={"15%"} h="30px" borderRadius={"50%"} value={"#948D9A"} bg="#948D9A" onClick={(e)=>handlecolor(e)}/>
-            <Input width={"15%"} h="30px" borderRadius={"50%"} value={"#A85A5A"} bg="#A85A5A" onClick={(e)=>handlecolor(e)}/>
-            <Input width={"15%"} h="30px" borderRadius={"50%"} value={"#ADADAD"} bg="#ADADAD" onClick={(e)=>handlecolor(e)}/>
-            <Input width={"15%"} h="30px" borderRadius={"50%"} value={"#B5CEDE"} bg="#B5CEDE" onClick={(e)=>handlecolor(e)}/>
-            <Input width={"15%"} h="30px" borderRadius={"50%"} value={"#BAB7BA"} bg="#BAB7BA" onClick={(e)=>handlecolor(e)}/>
-            <Input width={"15%"} h="30px" borderRadius={"50%"} value={"#CCBFAF"} bg="#CCBFAF" onClick={(e)=>handlecolor(e)}/>
-            <Input width={"15%"} h="30px" borderRadius={"50%"} value={"#D7252A"} bg="#D7252A" onClick={(e)=>handlecolor(e)}/>
-            <Input width={"15%"} h="30px" borderRadius={"50%"} value={"#E2BFB9"} bg="#E2BFB9" onClick={(e)=>handlecolor(e)}/>
-            <Input width={"15%"} h="30px" borderRadius={"50%"} value={"#E33935"} bg="#E33935" onClick={(e)=>handlecolor(e)}/>
-            <Input width={"15%"} h="30px" borderRadius={"50%"} value={"#E3A4A5"} bg="#E3A4A5" onClick={(e)=>handlecolor(e)}/>
-            <Input width={"15%"} h="30px" borderRadius={"50%"} value={"#F3CBC4"} bg="#F3CBC4" onClick={(e)=>handlecolor(e)}/>
-            <Input width={"15%"} h="30px" borderRadius={"50%"} value={"#FE9377"} bg="#FE9377" onClick={(e)=>handlecolor(e)}/>
+            <Input type="checkbox" width={"15%"} h="30px" borderRadius={"50%"} value={"#000000"} bg="#000000" onClick={(e)=>handlecolor(e)}/>
+            <Input type="checkbox"  width={"15%"} h="30px" borderRadius={"50%"} value={"#0DFDFC"} bg="#0DFDFC" onClick={(e)=>handlecolor(e)}/>
+            <Input type="checkbox" width={"15%"} h="30px" borderRadius={"50%"} value={"#11273B"} bg="#11273B" onClick={(e)=>handlecolor(e)}/>
+            <Input type="checkbox" width={"15%"} h="30px" borderRadius={"50%"} value={"#293163"} bg="#293163" onClick={(e)=>handlecolor(e)}/>
+            <Input type="checkbox" width={"15%"} h="30px" borderRadius={"50%"} value={"#424448"} bg="#424448" onClick={(e)=>handlecolor(e)}/>
+            <Input type="checkbox" width={"15%"} h="30px" borderRadius={"50%"} value={"#7D2C33"} bg="#7D2C33" onClick={(e)=>handlecolor(e)}/>
+            <Input type="checkbox" width={"15%"} h="30px" borderRadius={"50%"} value={"#948D9A"} bg="#948D9A" onClick={(e)=>handlecolor(e)}/>
+            <Input type="checkbox" width={"15%"} h="30px" borderRadius={"50%"} value={"#A85A5A"} bg="#A85A5A" onClick={(e)=>handlecolor(e)}/>
+            <Input type="checkbox" width={"15%"} h="30px" borderRadius={"50%"} value={"#ADADAD"} bg="#ADADAD" onClick={(e)=>handlecolor(e)}/>
+            <Input type="checkbox" width={"15%"} h="30px" borderRadius={"50%"} value={"#B5CEDE"} bg="#B5CEDE" onClick={(e)=>handlecolor(e)}/>
+            <Input type="checkbox" width={"15%"} h="30px" borderRadius={"50%"} value={"#BAB7BA"} bg="#BAB7BA" onClick={(e)=>handlecolor(e)}/>
+            <Input type="checkbox" width={"15%"} h="30px" borderRadius={"50%"} value={"#CCBFAF"} bg="#CCBFAF" onClick={(e)=>handlecolor(e)}/>
+            <Input type="checkbox" width={"15%"} h="30px" borderRadius={"50%"} value={"#D7252A"} bg="#D7252A" onClick={(e)=>handlecolor(e)}/>
+            <Input type="checkbox" width={"15%"} h="30px" borderRadius={"50%"} value={"#E2BFB9"} bg="#E2BFB9" onClick={(e)=>handlecolor(e)}/>
+            <Input type="checkbox" width={"15%"} h="30px" borderRadius={"50%"} value={"#E33935"} bg="#E33935" onClick={(e)=>handlecolor(e)}/>
+            <Input type="checkbox" width={"15%"} h="30px" borderRadius={"50%"} value={"#E3A4A5"} bg="#E3A4A5" onClick={(e)=>handlecolor(e)}/>
+            <Input type="checkbox" width={"15%"} h="30px" borderRadius={"50%"} value={"#F3CBC4"} bg="#F3CBC4" onClick={(e)=>handlecolor(e)}/>
+            <Input type="checkbox" width={"15%"} h="30px" borderRadius={"50%"} value={"#FE9377"} bg="#FE9377" onClick={(e)=>handlecolor(e)}/>
           </Grid>
           <Heading size={"xs"} p="4%" >Size</Heading>
          <Box display={"flex"}  flexDirection="column" gap={"1"} >
-         <Checkbox size={"sm"} colorScheme='green' >S</Checkbox>
-         <Checkbox size={"sm"} colorScheme='green' >M</Checkbox>
-         <Checkbox size={"sm"} colorScheme='green' >L</Checkbox>
-         <Checkbox size={"sm"} colorScheme='green' >XL</Checkbox>
-         <Checkbox size={"sm"} colorScheme='green' >XXL</Checkbox>
+         <Checkbox  size={"sm"} value="S" colorScheme='green' defaultChecked={category.includes("S")} onChange={handleFilter} >S</Checkbox>
+         <Checkbox size={"sm"} value="M"  colorScheme='green' defaultChecked={category.includes("M")} onChange={handleFilter} >M</Checkbox>
+         <Checkbox size={"sm"} value="L" colorScheme='green'  defaultChecked={category.includes("L")} onChange={handleFilter} >L</Checkbox>
+         <Checkbox size={"sm"} value="XL" colorScheme='green' defaultChecked={category.includes("XL")} onChange={handleFilter} >XL</Checkbox>
+         <Checkbox size={"sm"} value="XXL" colorScheme='green' defaultChecked={category.includes("XXL")} onChange={handleFilter}  >XXL</Checkbox>
          
 
         </Box>
@@ -181,7 +235,8 @@ useEffect(()=>{
       </div>
 
       <div className={styled.rightbox}>
-        <div className={styled.righttopbox}>
+      <div   className={styled.righttopboxblock} >
+        <div  className={styled.righttopbox}>
         <div className={styled.rightfilter}>
           <Box  display={"flex"} gap="2" alignItems={"center"} p="auto">
             <Heading  size={"xs"}  p="1">Sort by:</Heading>
@@ -202,6 +257,7 @@ useEffect(()=>{
             <DrawerComponent pa={newpath} />
             
           </div>
+          
           <Box display={"flex"} gap="2" mt="1%" left={"0"} >
             <Box  border={"2px solid black"} borderRadius="10px" _hover={{bg:"#febd69",color:"white"}} cursor={"pointer"} bg="#f7f7f7" m="auto"  onClick={(e)=>setgrid("5")} >
               <IoReorderFourOutline className={styled.burgaricon}   />
@@ -217,6 +273,24 @@ useEffect(()=>{
             </Box>
             
           </Box>
+        
+          </div>
+            <Box display={`${category.length>0?"flex":"none"}`} m="2px 2%" gap="5" >
+              <Button  borderRadius={"25px"} padding="23px" mb="2%" color={"white"} bgColor="black" _hover={{bgColor:"black"}} >Clear</Button>
+              {/* <Text>Size :</Text> */}
+              {
+                category.map((el)=>{
+                  return(
+                    <>
+                    
+                    <Box mt="2px">
+                      <Button borderRadius={"20px"} w="100px" padding="23px" _hover={{bgColor:"#FEBD69",color:"white"}} >{el}</Button>
+                    </Box>
+                    </>
+                  )
+                })
+              }
+            </Box>
         </div>
         <div className={`${grid==1?(styled.rightbottombox_1):grid==2?(styled.rightbottombox_2):grid==3?(styled.rightbottombox_3):(styled.rightbottombox)}`}>
           {IsLoading?"loading":
@@ -224,7 +298,7 @@ useEffect(()=>{
               return(
                 <>
 
-                <ProductToggle el={el} grid={grid} />
+                <ProductToggle key={el._id} el={el} grid={grid} />
                 
                 
                 </>

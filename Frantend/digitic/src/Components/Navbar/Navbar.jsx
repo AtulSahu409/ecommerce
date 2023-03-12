@@ -15,6 +15,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { Productsearch } from '../../Redux/Products/action'
 import {FaSearch} from "react-icons/fa"
 import { SearchReasultlist } from './SearchReasultlist'
+import logo from "../../Images/digitic_logo.png"
 const Navbar = () => {
   const [search,setsearch]=useState()
 
@@ -32,7 +33,7 @@ const Navbar = () => {
   return (
     <div className={styled.container}>
         <nav className={styled.topnav}>
-          <Link  to="/"> <Text>logo</Text></Link>
+          <Link  to="/"> <Image bgColor={"black"} w="180px" h="50px" src={logo}/></Link>
           
            <div className={styled.inputtop} >           
           
@@ -126,7 +127,7 @@ const Navbar = () => {
         </div>
         <div className={styled.item2 }>
             <div >
-              <Link>  <p>HOME</p></Link>
+              <Link to="/">  <p>HOME</p></Link>
             </div>
             <div >
                 <Link><p>OUR STORE</p></Link>
@@ -135,7 +136,7 @@ const Navbar = () => {
                 <Link to="/blogs"><p>BLOGS</p></Link>
             </div>
             <div >
-                <a href="/login"> <p>CONTACT</p></a>
+                <a href="/contact"> <p>CONTACT</p></a>
             </div>
         </div>
         

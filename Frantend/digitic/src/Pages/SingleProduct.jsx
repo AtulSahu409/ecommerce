@@ -1,4 +1,4 @@
-import { Accordion, AccordionButton, AccordionIcon, AccordionItem, AccordionPanel, Box, Button, Divider, Grid, Heading, Image, Input, Text, Textarea } from '@chakra-ui/react';
+import { Accordion, AccordionButton, AccordionIcon, AccordionItem, AccordionPanel, Box, Button, Divider, Grid, Heading, Image, Input, Text, Textarea, useToast } from '@chakra-ui/react';
 import React, { useEffect, useState } from 'react'
 import { AiFillHeart, AiFillLinkedin, AiOutlineGithub, AiOutlineYoutube } from 'react-icons/ai';
 import { FaDollarSign } from 'react-icons/fa';
@@ -17,9 +17,10 @@ const SingleProduct = () => {
   const [Quantity,setQuantity]=useState(1)
   const {title}=useParams()
   console.log(title)
-  const location=useLocation()
+  // const location=useLocation()
   const dispatch=useDispatch()
-  const navigate=useNavigate()
+  // const navigate=useNavigate()
+  const toast=useToast()
   const obj =useSelector((state)=>state.Product.singledata) 
   
     
@@ -31,6 +32,13 @@ const handleadd=()=>{
   console.log("post",obj)
   obj.Quantity=Quantity
   dispatch(postadd(obj))
+  toast({
+    title:'Item Add Successfully',
+    position:"top",
+    status: 'success',
+    duration: 2000,
+    isClosable: true,
+  })
   
   
 }
@@ -226,13 +234,11 @@ let qty=obj?.Availability
         </Box>
 
     </div>
-    
+    </div>
     <div className={styled.bottomContainer}>
     <Heading>Description</Heading>
     <div className={styled.bottomContainerdes}>
-      <div className={styled.bottomdes}>
-      {obj.Discription}
-      </div>
+      <div className={styled.bottomdes}>{obj.Discription}</div>
     </div>
 
 
@@ -280,7 +286,7 @@ let qty=obj?.Availability
 
     
   
-  </div>
+  
   </>
   )
 }

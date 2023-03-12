@@ -10,6 +10,7 @@ import AddToCart from './AddToCart'
 import CheckOut from './CheckOut'
 import BlogsPage from './BlogsPage'
 import Compare from './Compare'
+import Contact from './Contact'
 const MainRouter = () => {
   
   return (
@@ -24,6 +25,8 @@ const MainRouter = () => {
             <Route path="/checkout" element={<CheckOut/>}/>
             <Route path="/blogs" element={<BlogsPage/>}/>
             <Route path="/compare" element={<Compare/>}/>
+            <Route path="/contact" element={<Contact/>}/>
+
 
 
         </Routes>

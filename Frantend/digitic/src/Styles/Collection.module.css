@@ -64,15 +64,19 @@
 .righttopbox{
     /* border: 10px solid brown; */
     display: flex;
+    justify-content: space-between;
+    padding: 10px;
+
+
+}
+.righttopboxblock{
+    display: block;
     height: fit-content;
     box-shadow: rgb(0 0 0 / 24%) 0px 3px 8px;
     border-radius: 10px;
     margin-left: 1%;
     width: 100%;
-    justify-content: space-between;
-    padding: 10px;
-
-
+    
 }
 .rightbottombox{
 

@@ -16,3 +16,8 @@
  width: 350px;
  height: auto;
 }
+.LeftContainer{
+    display: grid;
+    grid-template-columns: repeat(2,1fr);
+    
+}

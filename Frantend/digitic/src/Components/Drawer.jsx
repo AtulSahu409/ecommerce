@@ -1,4 +1,4 @@
-import { AvatarBadge, Badge, Box, Button, Drawer, DrawerBody, DrawerCloseButton, DrawerContent, DrawerFooter, DrawerHeader, DrawerOverlay, FormLabel, Heading, IconButton, Image, Input, InputGroup, InputLeftAddon, InputRightAddon, Select, Stack, Text, Textarea, useDisclosure } from "@chakra-ui/react"
+import { AvatarBadge, Badge, Box, Button, Drawer, DrawerBody, DrawerCloseButton, DrawerContent, DrawerFooter, DrawerHeader, DrawerOverlay, FormLabel, Heading, IconButton, Image, Input, InputGroup, InputLeftAddon, InputRightAddon, Select, Stack, Text, Textarea, useDisclosure, useToast } from "@chakra-ui/react"
 import React, { useEffect } from "react"
 import { FaShoppingCart } from "react-icons/fa"
 import { RiDeleteBin6Line } from "react-icons/ri"
@@ -12,6 +12,7 @@ import styled from "../Styles/Navbar.module.css"
 const DrawerComponent= ({cart,pa})=>{
       const { isOpen, onOpen, onClose } = useDisclosure()
     const firstField = React.useRef()
+    const toast=useToast()
     const dispatch=useDispatch()
     const location=useLocation()
     console.log(location,"ck")
@@ -32,6 +33,13 @@ const DrawerComponent= ({cart,pa})=>{
     const handleDel=(id)=>{
   
       dispatch(deleteadd(id))
+      toast({
+        title:'Item Deleted Successfully',
+        position:"top",
+        status: 'warning',
+        duration: 2000,
+        isClosable: true,
+      })
     }
   
     return (
