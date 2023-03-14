@@ -1,6 +1,7 @@
 import { Alert, AlertIcon, AlertTitle, Button, Grid, GridItem, Image, Input, Popover, PopoverArrow, PopoverBody, PopoverCloseButton, PopoverContent, PopoverFooter, PopoverHeader, PopoverTrigger, Portal, Select, Stack } from "@chakra-ui/react";
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
+import { useLocation, useNavigate } from "react-router-dom";
 import { signin, signup } from "../Redux/UserSignup/action";
 import * as Components from './Components';
 
@@ -9,6 +10,8 @@ function Signup() {
     const [details,setDetails]=useState([])
     const [login,setlogin]=useState([])
     const dispatch=useDispatch()
+    const location=useLocation()
+    const navigate=useNavigate()
     const [img,setimg]=useState("https://cdn-icons-png.flaticon.com/512/3135/3135715.png")
     
     const handlechange=(e)=>{
@@ -27,6 +30,7 @@ function Signup() {
 
     const handlesubmit=(e)=>{
         e.preventDefault()
+
         const {Name,Email,Password}=details
         if(Name!==undefined && Email!==undefined && Password!==undefined){
             // <Stack>            
@@ -56,9 +60,15 @@ function Signup() {
     const handlesubmitlogin=(e)=>{
         e.preventDefault()
         const {Email,Password}=login
-        if(Email!==undefined && Password!==undefined){
-            dispatch(signin(login))
+        if(Email && Password)
+        {
+            dispatch(signin(login)).then((r)=>{
+                const comingfrom=location.state.from || "/"
+                navigate(comingfrom, {replace:true})
+            })
         }
+        
+        
     }
     
     return(

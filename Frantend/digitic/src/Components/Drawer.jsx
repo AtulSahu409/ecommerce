@@ -10,7 +10,7 @@ import { deleteadd, getadd } from "../Redux/AddCart/action"
 // import {CgShutterstock} from "react-icons/cg"
 import styled from "../Styles/Navbar.module.css"
 const DrawerComponent= ({cart,pa})=>{
-      const { isOpen, onOpen, onClose } = useDisclosure()
+    const { isOpen, onOpen, onClose } = useDisclosure()
     const firstField = React.useRef()
     const toast=useToast()
     const dispatch=useDispatch()
@@ -18,6 +18,8 @@ const DrawerComponent= ({cart,pa})=>{
     console.log(location,"ck")
     
     const data=useSelector((state)=>state.Addcart.data)
+    const username=useSelector((state)=>state.User.user)
+    console.log(username,"name")
     
     
     
@@ -94,9 +96,8 @@ const DrawerComponent= ({cart,pa})=>{
           <DrawerContent  >
             <DrawerCloseButton placement='left' fontSize={"25px"} mt="2%" mr="82%" />
             <DrawerHeader borderBottomWidth='1px' textAlign={"center"} fontSize={"14px"} color={"#777777"} >
-              
-                 Cart
-              
+            <Text>{username.Email}</Text>
+              Cart
             </DrawerHeader>
   
             <DrawerBody>

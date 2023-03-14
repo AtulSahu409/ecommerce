@@ -1,6 +1,7 @@
 import * as types from "./actiontype"
 
 const initialState={
+    isauth:false,
     user:[],
     isLoading:false,
     IsError:false,
@@ -18,6 +19,7 @@ const reducer=(state=initialState,action)=>{
             return{
                 ...state,
                 isLoading:false,
+            
                 user:payload
 
             };
@@ -38,6 +40,7 @@ const reducer=(state=initialState,action)=>{
             return{
                 ...state,
                 isLoading:false,
+                
                 user:payload
 
             };
@@ -47,6 +50,14 @@ const reducer=(state=initialState,action)=>{
                 IsError:true,
 
             }
+            case types.GET_Signin_SUCCESS:
+                return{
+                    ...state,
+                    isLoading:false,
+                    isauth:true,
+                    user:payload
+    
+                };    
         default:
             return state    
 
