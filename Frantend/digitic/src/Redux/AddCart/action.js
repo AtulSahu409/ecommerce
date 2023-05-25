@@ -5,7 +5,7 @@ const getadd=(dispatch)=> {
  
     dispatch({type:types.Get_Add_Request})
       
-    return axios.get('http://localhost:3005/addcart',{
+    return axios.get('https://shift-raven.cyclic.app/addcart',{
         headers:{
             "Authorization":`Bearer ${localStorage.getItem("token_key")}`
         }
@@ -29,7 +29,7 @@ const getadd=(dispatch)=> {
 
 const postadd=(data)=>(dispatch)=>{
     dispatch({type:types.Post_Add_Request})
-    return axios.post(`http://localhost:3005/addcart/newpost/`,data,{
+    return axios.post(`https://shift-raven.cyclic.app/addcart/newpost/`,data,{
         headers:{
             "Authorization":`Bearer ${localStorage.getItem("token_key")}`
         }
@@ -48,7 +48,7 @@ const postadd=(data)=>(dispatch)=>{
 
 const deleteadd=(id)=>(dispatch)=>{
     dispatch({type:types.Delete_Add_Request})
-    return axios.delete(`http://localhost:3005/addcart/delete/${id}`,{
+    return axios.delete(`https://shift-raven.cyclic.app/addcart/delete/${id}`,{
         headers:{
             "Authorization":`Bearer ${localStorage.getItem("token_key")}`
         }
@@ -61,6 +61,6 @@ const deleteadd=(id)=>(dispatch)=>{
     })
 
 }
-
+// export
 
 export { getadd,postadd,deleteadd }

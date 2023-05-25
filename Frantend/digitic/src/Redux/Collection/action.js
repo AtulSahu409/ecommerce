@@ -7,7 +7,7 @@ const Collection=(dispatch)=> {
  
 dispatch({type:types.GET_Collection_REQUEST})
   
-return axios.get('http://localhost:3005/collection/')
+return axios.get('https://shift-raven.cyclic.app/collection/')
   .then((r) => {
       dispatch({type:types.GET_Collection_SUCCESS, payload:r.data})
       console.log(r)

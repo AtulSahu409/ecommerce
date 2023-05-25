@@ -4,7 +4,7 @@ import axios from "axios"
 const signup = (payload)=>(dispatch)=> {
     // const navigate=useNavigate()
     dispatch({type:types.GET_Signup_REQUEST})
-      return axios.post('http://localhost:3005/user/signup', payload)
+      return axios.post('https://shift-raven.cyclic.app/user/signup', payload)
       .then((r) => {
           dispatch({type:types.GET_Signup_SUCCESS, payload:r.data})
           console.log(r)
@@ -50,7 +50,7 @@ const signup = (payload)=>(dispatch)=> {
     const signin = (payload)=>(dispatch)=> {
         // const navigate=useNavigate()
         dispatch({type:types.GET_Signin_REQUEST})
-          return axios.post('http://localhost:3005/user/login', payload)
+          return axios.post('https://shift-raven.cyclic.app/user/login', payload)
           .then((r) => {
               dispatch({type:types.GET_Signin_SUCCESS, payload:r.data})
               localStorage.setItem("token_key",r.data.token)

@@ -5,7 +5,7 @@ const getBlog=(dispatch)=> {
  
     dispatch({type:types.Get_Blog_Request})
       
-    return axios.get('http://localhost:3005/blogs')
+    return axios.get('https://shift-raven.cyclic.app/blogs')
       .then((r) => {
           dispatch({type:types.Get_Blog_Success, payload:r.data})
           console.log(r)
@@ -25,7 +25,7 @@ const getBlog=(dispatch)=> {
 
 const postBlog=(data)=>(dispatch)=>{
     dispatch({type:types.Post_Blog_Request})
-    return axios.post(`http://localhost:3005/blogs/newpost`,data)
+    return axios.post(`https://shift-raven.cyclic.app/blogs/newpost`,data)
     .then((res)=>{dispatch({type:types.Post_Blog_Success})
         console.log(res)
     })
@@ -40,7 +40,7 @@ const postBlog=(data)=>(dispatch)=>{
 
 const deleteBlog=(id)=>(dispatch)=>{
     dispatch({type:types.Delete_Blog_Request})
-    return axios.delete(`http://localhost:3005/blogs/delete/${id}`)
+    return axios.delete(`https://shift-raven.cyclic.app/blogs/delete/${id}`)
     .then((res)=>{dispatch({type:types.Delete_Blog_Success})
     console.log(res)
     })

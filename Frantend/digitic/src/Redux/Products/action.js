@@ -3,7 +3,7 @@ import axios from "axios"
 
 const Productsearch =(Cat)=>(dispatch)=> {
     dispatch({type:types.GET_Pro_REQUEST})
-     return axios.get(`http://localhost:3005/product/all/${Cat}`)
+     return axios.get(`https://shift-raven.cyclic.app/product/all/${Cat}`)
      .then((r) => {
          dispatch({type:types.GET_Pro_SUCCESS, payload:r.data})
          console.log(r.data,"search")
@@ -20,7 +20,7 @@ const Productsearch =(Cat)=>(dispatch)=> {
 
 const Productdata =(Cat)=>(dispatch)=> {
  dispatch({type:types.GET_Products_REQUEST})
-  return axios.get(`http://localhost:3005/product/${Cat}`)
+  return axios.get(`https://shift-raven.cyclic.app/product/${Cat}`)
   .then((r) => {
       dispatch({type:types.GET_Products_SUCCESS, payload:r.data})
       console.log(r)
@@ -36,7 +36,7 @@ const Productdata =(Cat)=>(dispatch)=> {
 
 const sortasc =(Cat)=>(dispatch)=> {
     dispatch({type:types.GET_Products_REQUEST})
-     return axios.get(`http://localhost:3005/product/sort/${Cat}`)
+     return axios.get(`https://shift-raven.cyclic.app/product/sort/${Cat}`)
      .then((r) => {
          dispatch({type:types.GET_Products_SUCCESS, payload:r.data})
          console.log(r,"asc")
@@ -51,7 +51,7 @@ const sortasc =(Cat)=>(dispatch)=> {
 
    const sortdesc =(Cat)=>(dispatch)=> {
     dispatch({type:types.GET_Products_REQUEST})
-     return axios.get(`http://localhost:3005/product/sortdesc/${Cat}`)
+     return axios.get(`https://shift-raven.cyclic.app/product/sortdesc/${Cat}`)
      .then((r) => {
          dispatch({type:types.GET_Products_SUCCESS, payload:r.data})
          console.log(r,"asc")
@@ -66,7 +66,7 @@ const sortasc =(Cat)=>(dispatch)=> {
 
    const sorttitleza =(Cat)=>(dispatch)=> {
     dispatch({type:types.GET_Products_REQUEST})
-     return axios.get(`http://localhost:3005/product/sorttitleza/${Cat}`)
+     return axios.get(`https://shift-raven.cyclic.app/product/sorttitleza/${Cat}`)
      .then((r) => {
          dispatch({type:types.GET_Products_SUCCESS, payload:r.data})
          console.log(r,"asc")
@@ -82,7 +82,7 @@ const sortasc =(Cat)=>(dispatch)=> {
 
    const sorttitleaz =(Cat)=>(dispatch)=> {
     dispatch({type:types.GET_Products_REQUEST})
-     return axios.get(`http://localhost:3005/product/sorttitleaz/${Cat}`)
+     return axios.get(`https://shift-raven.cyclic.app/product/sorttitleaz/${Cat}`)
      .then((r) => {
          dispatch({type:types.GET_Products_SUCCESS, payload:r.data})
          console.log(r,"asc")
@@ -97,7 +97,7 @@ const sortasc =(Cat)=>(dispatch)=> {
 
    const sortprice =(Cat,gt,lt)=>(dispatch)=> {
     dispatch({type:types.GET_Products_REQUEST})
-     return axios.get(`http://localhost:3005/product/sortprice/${Cat}/${gt}/${lt}`)
+     return axios.get(`https://shift-raven.cyclic.app/product/sortprice/${Cat}/${gt}/${lt}`)
      .then((r) => {
          dispatch({type:types.GET_Products_SUCCESS, payload:r.data})
          console.log(r,"asc")
@@ -115,7 +115,7 @@ const sortasc =(Cat)=>(dispatch)=> {
 const singledata=(id)=>(dispatch)=> {
     console.log(id)
     dispatch({type:types.GET_single_REQUEST})
-     return axios.get(`http://localhost:3005/product/single/${id}`)
+     return axios.get(`https://shift-raven.cyclic.app/product/single/${id}`)
      .then((r) => {
          dispatch({type:types.GET_single_SUCCESS, payload:r.data[0]})
          console.log(r.data[0])

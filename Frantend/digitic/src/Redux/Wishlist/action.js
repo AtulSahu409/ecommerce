@@ -5,7 +5,7 @@ const getwish=(dispatch)=> {
  
     dispatch({type:types.Get_Wish_Request})
       
-    return axios.get('http://localhost:3005/wish/',{
+    return axios.get('https://shift-raven.cyclic.app/wish/',{
         headers:{
             "Authorization":`Bearer ${localStorage.getItem("token_key")}`
         }
@@ -29,7 +29,7 @@ const getwish=(dispatch)=> {
 
 const postwish=(data)=>(dispatch)=>{
     dispatch({type:types.Post_Wish_Request})
-    return axios.post(`http://localhost:3005/wish/newpost/`,data,{
+    return axios.post(`https://shift-raven.cyclic.app/wish/newpost/`,data,{
         headers:{
             "Authorization":`Bearer ${localStorage.getItem("token_key")}`
         }
@@ -45,7 +45,7 @@ const postwish=(data)=>(dispatch)=>{
 
 const deletewish=(id)=>(dispatch)=>{
     dispatch({type:types.Delete_Wish_Request})
-    return axios.delete(`http://localhost:3005/wish/delete/${id}`,{
+    return axios.delete(`https://shift-raven.cyclic.app/wish/delete/${id}`,{
         headers:{
             "Authorization":`Bearer ${localStorage.getItem("token_key")}`
         }
